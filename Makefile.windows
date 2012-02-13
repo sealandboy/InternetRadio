@@ -42,19 +42,33 @@ CFILES =        main.c			\
 			
 				
 # Header files.
-HFILES =        display.h        keyboard.h              \
-                led.h                            \
-                portio.h         remcon.h         log.h          \
-                system.h                 settings.h     \
-                                  inet.h         \
-                platform.h       version.h        update.h       \
-                           uart0driver.h    typedefs.h     \
-                       vs10xx.h         audio.h        \
-                watchdog.h       mmc.h             \
-                flash.h          spidrv.h         command.h      \
-                parse.h          mmcdrv.h         fat.h          \
-                fatdrv.h         flash.h	  	rtc.h
-
+HFILES =        display.h		\
+				keyboard.h		\
+				led.h			\
+				portio.h		\
+				remcon.h		\
+				log.h			\
+				system.h		\
+				settings.h		\
+				inet.h			\
+				platform.h		\
+				version.h		\
+				update.h		\
+				uart0driver.h	\
+				typedefs.h		\
+				vs10xx.h		\
+				audio.h			\
+				watchdog.h		\
+				mmc.h			\
+				flash.h			\
+				spidrv.h		\
+				command.h		\
+				parse.h			\
+				mmcdrv.h		\
+				fat.h			\
+				fatdrv.h		\
+				flash.h			\
+				rtc.h
 
 # Alle source files in de ./source dir
 SRCS =	$(addprefix $(SRC_DIR)/,$(CFILES))
