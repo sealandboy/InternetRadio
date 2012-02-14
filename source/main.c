@@ -91,6 +91,7 @@
  * Simple multithreaded HTTP daemon.
  */
 
+#include "main.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -99,7 +100,6 @@
 
 #include <dev/x12rtc.h>
 #include <dev/nicrtl.h>
-#include "main.h"
 #include <dev/urom.h>
 #include <dev/nplmmc.h>
 #include <dev/sbimmc.h>
@@ -112,7 +112,6 @@
 #include <sys/confnet.h>
 #include <sys/socket.h>
 
-
 #include <arpa/inet.h>
 #include <net/route.h>
 #include <netinet/tcp.h>
@@ -123,6 +122,11 @@
 #include <pro/asp.h>
 #include <pro/sntp.h>
 #include <pro/discover.h>
+
+#ifdef NUTDEBUG
+#include <sys/osdebug.h>
+#include <net/netdebug.h>
+#endif
 
 #define ETH0_BASE	0xC300
 #define ETH0_IRQ	5
@@ -742,22 +746,22 @@ static int InitTimeAndDate(void)
     _timezone = MYTZ * 60L * 60L;
 
 #ifdef RTC_CHIP
-    /* Register and query hardware RTC, if available. */
-    printf("Init RTC...");
-    if (NutRegisterRtc(&RTC_CHIP)) {
-        puts("failed");
-    } else {
-        u_long rtc_stat;
+    // /* Register and query hardware RTC, if available. */
+    // printf("Init RTC...");
+    // if (NutRegisterRtc(&RTC_CHIP)) {
+        // puts("failed");
+    // } else {
+        // u_long rtc_stat;
 
-        NutRtcGetStatus(&rtc_stat);
-        if (rtc_stat & RTC_STATUS_PF) {
-            puts("time lost");
-        }
-        else {
-            puts("OK");
-            rc = 0;
-        }
-    }
+        // NutRtcGetStatus(&rtc_stat);
+        // if (rtc_stat & RTC_STATUS_PF) {
+            // puts("time lost");
+        // }
+        // else {
+            // puts("OK");
+            // rc = 0;
+        // }
+    // }
 #endif /* RTC_CHIP */
 
 #ifdef MYTIMED
@@ -874,19 +878,19 @@ int main(void)
 #ifdef USE_DATE_AND_TIME
     /* Initialize system clock and calendar. */
     if (InitTimeAndDate() == 0) {
-        printf("Local time: ");
-        WriteLocalDate(stdout);
-        putchar(' ');
-        WriteLocalTime(stdout);
-        putchar('\n');
-        NutHttpSetOptionFlags(NutHttpGetOptionFlags() | HTTP_OF_USE_HOST_TIME | HTTP_OF_USE_FILE_TIME);
+       printf("Local time: ");
+       WriteLocalDate(stdout);
+       putchar(' ');
+       WriteLocalTime(stdout);
+       putchar('\n');
+       NutHttpSetOptionFlags(NutHttpGetOptionFlags() | HTTP_OF_USE_HOST_TIME | HTTP_OF_USE_FILE_TIME);
     }
 #endif
 
     /*
      * Register our device for the file system.
      */
-    NutRegisterDevice(&MY_FSDEV, 0, 0);
+   //REMCO - DELETE PROM NutRegisterDevice(&MY_FSDEV, 0, 0);
 
 #ifdef MY_BLKDEV
     /* Register block device. */
