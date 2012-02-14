@@ -91,14 +91,15 @@
  * Simple multithreaded HTTP daemon.
  */
 
-#include "main.h"
 
 #include <stdlib.h>
 #include <string.h>
 #include <io.h>
 #include <fcntl.h>
 
-#include "board.h"
+#include <dev/x12rtc.h>
+#include <dev/nicrtl.h>
+#include "main.h"
 #include <dev/urom.h>
 #include <dev/nplmmc.h>
 #include <dev/sbimmc.h>
@@ -111,6 +112,7 @@
 #include <sys/confnet.h>
 #include <sys/socket.h>
 
+
 #include <arpa/inet.h>
 #include <net/route.h>
 #include <netinet/tcp.h>
@@ -121,6 +123,13 @@
 #include <pro/asp.h>
 #include <pro/sntp.h>
 #include <pro/discover.h>
+
+#define ETH0_BASE	0xC300
+#define ETH0_IRQ	5
+
+#define OK			1
+#define NOK			0
+
 
 #ifdef NUTDEBUG
 #include <sys/osdebug.h>
@@ -170,6 +179,16 @@ static void WriteHtmlPageHeader(FILE *stream, char *title)
 /*
  * Write HTTP response and HTML page header to a specified stream.
  */
+ 
+ NUTRTC rtcX12x6 = {
+     X12Init,            
+     X12RtcGetClock,     
+     X12RtcSetClock,     
+     X12RtcGetAlarm,     
+     X12RtcSetAlarm,     
+     X12RtcGetStatus,    
+     X12RtcClearStatus   
+ };
 static void WriteHtmlIntro(FILE *stream, REQUEST * req, char *title)
 {
     /* These useful API calls create a HTTP response for us. */
@@ -796,7 +815,7 @@ int main(void)
     /*
      * Register Ethernet controller.
      */
-    if (NutRegisterDevice(&DEV_ETHER, 0, 0)) {
+    if (NutRegisterDevice(&DEV_ETHER, ETH0_BASE, ETH0_IRQ)) {
         puts("Registering device failed");
     }
 
@@ -806,7 +825,9 @@ int main(void)
 
         printf("initial boot...");
 #ifdef USE_DHCP
-        if (NutDhcpIfConfig(DEV_ETHER_NAME, mac, 60000)) 
+		static char eth0IfName[9] = "eth0";
+		uint8_t mac_addr[6] = { 0x00, 0x06, 0x98, 0x30, 0x02, 0x76 };
+        if (NutDhcpIfConfig(eth0IfName, mac_addr, 0)) 
 #endif
         {
             u_long ip_addr = inet_addr(MY_IPADDR);

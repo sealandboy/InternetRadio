@@ -39,6 +39,9 @@
 #include <dev/board.h>
 #include <cfg/os.h>
 
+#define ETH0_BASE	0xC300
+#define ETH0_IRQ	5
+
 /* Wether we should use DHCP. */
 #define USE_DHCP
 
