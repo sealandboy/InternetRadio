@@ -38,6 +38,9 @@ CFILES =        main.c			\
                 mmcdrv.c        \
                 fat.c			\
 				flash.c			\
+				httpd.c			\
+				httpopt.c		\
+				rfctime.c		\
 				rtc.c
 			
 				
@@ -68,6 +71,10 @@ HFILES =        display.h		\
 				fat.h			\
 				fatdrv.h		\
 				flash.h			\
+				dencode.h		\
+				httpd.h			\
+				rcftime.h		\
+				arch.h			\
 				rtc.h
 
 # Alle source files in de ./source dir

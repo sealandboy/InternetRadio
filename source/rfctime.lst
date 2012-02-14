@@ -1,0 +1,715 @@
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 1
+
+
+   1               		.file	"rfctime.c"
+   2               		.arch atmega2561
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  10               		.text
+  11               		.type	skip_spaces, @function
+  12               	skip_spaces:
+  13               	/* prologue: frame size=0 */
+  14               	/* prologue end (size=0) */
+  15 0000 FC01      		movw r30,r24
+  16 0002 00C0      		rjmp .L2
+  17               	.L3:
+  18 0004 3196      		adiw r30,1
+  19               	.L2:
+  20 0006 8081      		ld r24,Z
+  21 0008 8032      		cpi r24,lo8(32)
+  22 000a 01F0      		breq .L3
+  23 000c 8930      		cpi r24,lo8(9)
+  24 000e 01F0      		breq .L3
+  25 0010 CF01      		movw r24,r30
+  26               	/* epilogue: frame size=0 */
+  27 0012 0895      		ret
+  28               	/* epilogue end (size=1) */
+  29               	/* function skip_spaces size 10 (9) */
+  30               		.size	skip_spaces, .-skip_spaces
+  31               		.type	parse_digits, @function
+  32               	parse_digits:
+  33               	/* prologue: frame size=0 */
+  34               	/* prologue end (size=0) */
+  35 0014 DC01      		movw r26,r24
+  36 0016 FB01      		movw r30,r22
+  37 0018 1182      		std Z+1,__zero_reg__
+  38 001a 1082      		st Z,__zero_reg__
+  39 001c 00C0      		rjmp .L8
+  40               	.L9:
+  41 001e 8081      		ld r24,Z
+  42 0020 9181      		ldd r25,Z+1
+  43 0022 9C01      		movw r18,r24
+  44 0024 53E0      		ldi r21,3
+  45 0026 220F      	1:	lsl r18
+  46 0028 331F      		rol r19
+  47 002a 5A95      		dec r21
+  48 002c 01F4      		brne 1b
+  49 002e 880F      		lsl r24
+  50 0030 991F      		rol r25
+  51 0032 820F      		add r24,r18
+  52 0034 931F      		adc r25,r19
+  53 0036 9183      		std Z+1,r25
+  54 0038 8083      		st Z,r24
+  55 003a 2D91      		ld r18,X+
+  56 003c 3327      		clr r19
+  57 003e 27FD      		sbrc r18,7
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 2
+
+
+  58 0040 3095      		com r19
+  59 0042 820F      		add r24,r18
+  60 0044 931F      		adc r25,r19
+  61 0046 C097      		sbiw r24,48
+  62 0048 9183      		std Z+1,r25
+  63 004a 8083      		st Z,r24
+  64               	.L8:
+  65 004c 8C91      		ld r24,X
+  66 004e 9927      		clr r25
+  67 0050 87FD      		sbrc r24,7
+  68 0052 9095      		com r25
+  69 0054 C097      		sbiw r24,48
+  70 0056 0A97      		sbiw r24,10
+  71 0058 00F0      		brlo .L9
+  72 005a CD01      		movw r24,r26
+  73               	/* epilogue: frame size=0 */
+  74 005c 0895      		ret
+  75               	/* epilogue end (size=1) */
+  76               	/* function parse_digits size 38 (37) */
+  77               		.size	parse_digits, .-parse_digits
+  78               	.global	TimeParseYear
+  79               		.type	TimeParseYear, @function
+  80               	TimeParseYear:
+  81               	/* prologue: frame size=0 */
+  82 005e CF93      		push r28
+  83 0060 DF93      		push r29
+  84               	/* prologue end (size=2) */
+  85 0062 EB01      		movw r28,r22
+  86 0064 0E94 0000 		call parse_digits
+  87 0068 2881      		ld r18,Y
+  88 006a 3981      		ldd r19,Y+1
+  89 006c 2634      		cpi r18,70
+  90 006e 3105      		cpc r19,__zero_reg__
+  91 0070 04F4      		brge .L13
+  92 0072 2C59      		subi r18,lo8(-(100))
+  93 0074 3F4F      		sbci r19,hi8(-(100))
+  94 0076 00C0      		rjmp .L18
+  95               	.L13:
+  96 0078 47E0      		ldi r20,hi8(1901)
+  97 007a 2D36      		cpi r18,lo8(1901)
+  98 007c 3407      		cpc r19,r20
+  99 007e 04F0      		brlt .L15
+ 100 0080 2C56      		subi r18,lo8(-(-1900))
+ 101 0082 3740      		sbci r19,hi8(-(-1900))
+ 102               	.L18:
+ 103 0084 3983      		std Y+1,r19
+ 104 0086 2883      		st Y,r18
+ 105               	.L15:
+ 106               	/* epilogue: frame size=0 */
+ 107 0088 DF91      		pop r29
+ 108 008a CF91      		pop r28
+ 109 008c 0895      		ret
+ 110               	/* epilogue end (size=3) */
+ 111               	/* function TimeParseYear size 24 (19) */
+ 112               		.size	TimeParseYear, .-TimeParseYear
+ 113               	.global	TimeParseHms
+ 114               		.type	TimeParseHms, @function
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 3
+
+
+ 115               	TimeParseHms:
+ 116               	/* prologue: frame size=0 */
+ 117 008e 0F93      		push r16
+ 118 0090 1F93      		push r17
+ 119 0092 CF93      		push r28
+ 120 0094 DF93      		push r29
+ 121               	/* prologue end (size=4) */
+ 122 0096 EA01      		movw r28,r20
+ 123 0098 8901      		movw r16,r18
+ 124 009a 0E94 0000 		call parse_digits
+ 125 009e FC01      		movw r30,r24
+ 126 00a0 8081      		ld r24,Z
+ 127 00a2 8A33      		cpi r24,lo8(58)
+ 128 00a4 01F4      		brne .L20
+ 129 00a6 BE01      		movw r22,r28
+ 130 00a8 CF01      		movw r24,r30
+ 131 00aa 0196      		adiw r24,1
+ 132 00ac 0E94 0000 		call parse_digits
+ 133 00b0 FC01      		movw r30,r24
+ 134 00b2 8081      		ld r24,Z
+ 135 00b4 8A33      		cpi r24,lo8(58)
+ 136 00b6 01F4      		brne .L22
+ 137 00b8 B801      		movw r22,r16
+ 138 00ba CF01      		movw r24,r30
+ 139 00bc 0196      		adiw r24,1
+ 140 00be 0E94 0000 		call parse_digits
+ 141 00c2 FC01      		movw r30,r24
+ 142 00c4 00C0      		rjmp .L24
+ 143               	.L22:
+ 144 00c6 D801      		movw r26,r16
+ 145 00c8 1D92      		st X+,__zero_reg__
+ 146 00ca 1C92      		st X,__zero_reg__
+ 147 00cc 00C0      		rjmp .L24
+ 148               	.L20:
+ 149 00ce 1982      		std Y+1,__zero_reg__
+ 150 00d0 1882      		st Y,__zero_reg__
+ 151               	.L24:
+ 152 00d2 CF01      		movw r24,r30
+ 153               	/* epilogue: frame size=0 */
+ 154 00d4 DF91      		pop r29
+ 155 00d6 CF91      		pop r28
+ 156 00d8 1F91      		pop r17
+ 157 00da 0F91      		pop r16
+ 158 00dc 0895      		ret
+ 159               	/* epilogue end (size=5) */
+ 160               	/* function TimeParseHms size 40 (31) */
+ 161               		.size	TimeParseHms, .-TimeParseHms
+ 162               		.data
+ 163               	.LC0:
+ 164 0000 2573 2C20 		.string	"%s, %02d %s %04d %02d:%02d:%02d"
+ 164      2530 3264 
+ 164      2025 7320 
+ 164      2530 3464 
+ 164      2025 3032 
+ 165               		.text
+ 166               	.global	Rfc1123TimeString
+ 167               		.type	Rfc1123TimeString, @function
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 4
+
+
+ 168               	Rfc1123TimeString:
+ 169               	/* prologue: frame size=0 */
+ 170 00de 0F93      		push r16
+ 171 00e0 1F93      		push r17
+ 172 00e2 CF93      		push r28
+ 173 00e4 DF93      		push r29
+ 174               	/* prologue end (size=4) */
+ 175 00e6 DC01      		movw r26,r24
+ 176 00e8 8D91      		ld r24,X+
+ 177 00ea 9C91      		ld r25,X
+ 178 00ec 1197      		sbiw r26,1
+ 179 00ee 9F93      		push r25
+ 180 00f0 8F93      		push r24
+ 181 00f2 ED01      		movw r28,r26
+ 182 00f4 8A81      		ldd r24,Y+2
+ 183 00f6 9B81      		ldd r25,Y+3
+ 184 00f8 9F93      		push r25
+ 185 00fa 8F93      		push r24
+ 186 00fc 8C81      		ldd r24,Y+4
+ 187 00fe 9D81      		ldd r25,Y+5
+ 188 0100 9F93      		push r25
+ 189 0102 8F93      		push r24
+ 190 0104 8A85      		ldd r24,Y+10
+ 191 0106 9B85      		ldd r25,Y+11
+ 192 0108 8459      		subi r24,lo8(-(1900))
+ 193 010a 984F      		sbci r25,hi8(-(1900))
+ 194 010c 9F93      		push r25
+ 195 010e 8F93      		push r24
+ 196 0110 E885      		ldd r30,Y+8
+ 197 0112 F985      		ldd r31,Y+9
+ 198 0114 EE0F      		lsl r30
+ 199 0116 FF1F      		rol r31
+ 200 0118 E050      		subi r30,lo8(-(months))
+ 201 011a F040      		sbci r31,hi8(-(months))
+ 202 011c 8081      		ld r24,Z
+ 203 011e 9181      		ldd r25,Z+1
+ 204 0120 9F93      		push r25
+ 205 0122 8F93      		push r24
+ 206 0124 8E81      		ldd r24,Y+6
+ 207 0126 9F81      		ldd r25,Y+7
+ 208 0128 9F93      		push r25
+ 209 012a 8F93      		push r24
+ 210 012c EC85      		ldd r30,Y+12
+ 211 012e FD85      		ldd r31,Y+13
+ 212 0130 EE0F      		lsl r30
+ 213 0132 FF1F      		rol r31
+ 214 0134 E050      		subi r30,lo8(-(wkdays))
+ 215 0136 F040      		sbci r31,hi8(-(wkdays))
+ 216 0138 8081      		ld r24,Z
+ 217 013a 9181      		ldd r25,Z+1
+ 218 013c 9F93      		push r25
+ 219 013e 8F93      		push r24
+ 220 0140 80E0      		ldi r24,lo8(.LC0)
+ 221 0142 90E0      		ldi r25,hi8(.LC0)
+ 222 0144 9F93      		push r25
+ 223 0146 8F93      		push r24
+ 224 0148 00E0      		ldi r16,lo8(rfc1123_buf)
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 5
+
+
+ 225 014a 10E0      		ldi r17,hi8(rfc1123_buf)
+ 226 014c 1F93      		push r17
+ 227 014e 0F93      		push r16
+ 228 0150 0E94 0000 		call sprintf
+ 229 0154 EDB7      		in r30,__SP_L__
+ 230 0156 FEB7      		in r31,__SP_H__
+ 231 0158 7296      		adiw r30,18
+ 232 015a 0FB6      		in __tmp_reg__,__SREG__
+ 233 015c F894      		cli
+ 234 015e FEBF      		out __SP_H__,r31
+ 235 0160 0FBE      		out __SREG__,__tmp_reg__
+ 236 0162 EDBF      		out __SP_L__,r30
+ 237 0164 C801      		movw r24,r16
+ 238               	/* epilogue: frame size=0 */
+ 239 0166 DF91      		pop r29
+ 240 0168 CF91      		pop r28
+ 241 016a 1F91      		pop r17
+ 242 016c 0F91      		pop r16
+ 243 016e 0895      		ret
+ 244               	/* epilogue end (size=5) */
+ 245               	/* function Rfc1123TimeString size 73 (64) */
+ 246               		.size	Rfc1123TimeString, .-Rfc1123TimeString
+ 247               	.global	TimeParseMonth
+ 248               		.type	TimeParseMonth, @function
+ 249               	TimeParseMonth:
+ 250               	/* prologue: frame size=0 */
+ 251 0170 CF93      		push r28
+ 252 0172 DF93      		push r29
+ 253               	/* prologue end (size=2) */
+ 254 0174 EC01      		movw r28,r24
+ 255 0176 FB01      		movw r30,r22
+ 256 0178 8881      		ld r24,Y
+ 257 017a 8134      		cpi r24,lo8(65)
+ 258 017c 01F4      		brne .L29
+ 259 017e 2196      		adiw r28,1
+ 260 0180 8881      		ld r24,Y
+ 261 0182 8037      		cpi r24,lo8(112)
+ 262 0184 01F0      		breq .L31
+ 263 0186 8035      		cpi r24,lo8(80)
+ 264 0188 01F4      		brne .L33
+ 265               	.L31:
+ 266 018a 83E0      		ldi r24,lo8(3)
+ 267 018c 90E0      		ldi r25,hi8(3)
+ 268 018e 00C0      		rjmp .L62
+ 269               	.L33:
+ 270 0190 87E0      		ldi r24,lo8(7)
+ 271 0192 90E0      		ldi r25,hi8(7)
+ 272 0194 00C0      		rjmp .L62
+ 273               	.L29:
+ 274 0196 8434      		cpi r24,lo8(68)
+ 275 0198 01F4      		brne .L35
+ 276 019a 8BE0      		ldi r24,lo8(11)
+ 277 019c 90E0      		ldi r25,hi8(11)
+ 278 019e 00C0      		rjmp .L62
+ 279               	.L35:
+ 280 01a0 8634      		cpi r24,lo8(70)
+ 281 01a2 01F4      		brne .L37
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 6
+
+
+ 282 01a4 81E0      		ldi r24,lo8(1)
+ 283 01a6 90E0      		ldi r25,hi8(1)
+ 284 01a8 00C0      		rjmp .L62
+ 285               	.L37:
+ 286 01aa 8A34      		cpi r24,lo8(74)
+ 287 01ac 01F4      		brne .L39
+ 288 01ae 2196      		adiw r28,1
+ 289 01b0 8881      		ld r24,Y
+ 290 01b2 8136      		cpi r24,lo8(97)
+ 291 01b4 01F0      		breq .L41
+ 292 01b6 8134      		cpi r24,lo8(65)
+ 293 01b8 01F4      		brne .L43
+ 294               	.L41:
+ 295 01ba 1182      		std Z+1,__zero_reg__
+ 296 01bc 1082      		st Z,__zero_reg__
+ 297 01be 00C0      		rjmp .L61
+ 298               	.L43:
+ 299 01c0 8823      		tst r24
+ 300 01c2 01F0      		breq .L44
+ 301 01c4 2196      		adiw r28,1
+ 302 01c6 8881      		ld r24,Y
+ 303 01c8 8C36      		cpi r24,lo8(108)
+ 304 01ca 01F0      		breq .L46
+ 305 01cc 8C34      		cpi r24,lo8(76)
+ 306 01ce 01F4      		brne .L44
+ 307               	.L46:
+ 308 01d0 86E0      		ldi r24,lo8(6)
+ 309 01d2 90E0      		ldi r25,hi8(6)
+ 310 01d4 00C0      		rjmp .L62
+ 311               	.L44:
+ 312 01d6 85E0      		ldi r24,lo8(5)
+ 313 01d8 90E0      		ldi r25,hi8(5)
+ 314 01da 00C0      		rjmp .L62
+ 315               	.L39:
+ 316 01dc 8D34      		cpi r24,lo8(77)
+ 317 01de 01F4      		brne .L48
+ 318 01e0 2196      		adiw r28,1
+ 319 01e2 8881      		ld r24,Y
+ 320 01e4 8136      		cpi r24,lo8(97)
+ 321 01e6 01F4      		brne .L50
+ 322 01e8 2196      		adiw r28,1
+ 323 01ea 8881      		ld r24,Y
+ 324 01ec 8237      		cpi r24,lo8(114)
+ 325 01ee 01F0      		breq .L52
+ 326 01f0 8235      		cpi r24,lo8(82)
+ 327 01f2 01F4      		brne .L50
+ 328               	.L52:
+ 329 01f4 82E0      		ldi r24,lo8(2)
+ 330 01f6 90E0      		ldi r25,hi8(2)
+ 331 01f8 00C0      		rjmp .L62
+ 332               	.L50:
+ 333 01fa 84E0      		ldi r24,lo8(4)
+ 334 01fc 90E0      		ldi r25,hi8(4)
+ 335 01fe 00C0      		rjmp .L62
+ 336               	.L48:
+ 337 0200 8E34      		cpi r24,lo8(78)
+ 338 0202 01F4      		brne .L54
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 7
+
+
+ 339 0204 8AE0      		ldi r24,lo8(10)
+ 340 0206 90E0      		ldi r25,hi8(10)
+ 341 0208 00C0      		rjmp .L62
+ 342               	.L54:
+ 343 020a 8F34      		cpi r24,lo8(79)
+ 344 020c 01F4      		brne .L56
+ 345 020e 89E0      		ldi r24,lo8(9)
+ 346 0210 90E0      		ldi r25,hi8(9)
+ 347 0212 00C0      		rjmp .L62
+ 348               	.L56:
+ 349 0214 88E0      		ldi r24,lo8(8)
+ 350 0216 90E0      		ldi r25,hi8(8)
+ 351               	.L62:
+ 352 0218 9183      		std Z+1,r25
+ 353 021a 8083      		st Z,r24
+ 354 021c 00C0      		rjmp .L61
+ 355               	.L58:
+ 356 021e 2196      		adiw r28,1
+ 357               	.L61:
+ 358 0220 8881      		ld r24,Y
+ 359 0222 9927      		clr r25
+ 360 0224 87FD      		sbrc r24,7
+ 361 0226 9095      		com r25
+ 362 0228 0E94 0000 		call isalpha
+ 363 022c 892B      		or r24,r25
+ 364 022e 01F4      		brne .L58
+ 365 0230 CE01      		movw r24,r28
+ 366               	/* epilogue: frame size=0 */
+ 367 0232 DF91      		pop r29
+ 368 0234 CF91      		pop r28
+ 369 0236 0895      		ret
+ 370               	/* epilogue end (size=3) */
+ 371               	/* function TimeParseMonth size 100 (95) */
+ 372               		.size	TimeParseMonth, .-TimeParseMonth
+ 373               	.global	TimeParseDmy
+ 374               		.type	TimeParseDmy, @function
+ 375               	TimeParseDmy:
+ 376               	/* prologue: frame size=0 */
+ 377 0238 EF92      		push r14
+ 378 023a FF92      		push r15
+ 379 023c 0F93      		push r16
+ 380 023e 1F93      		push r17
+ 381 0240 CF93      		push r28
+ 382 0242 DF93      		push r29
+ 383               	/* prologue end (size=6) */
+ 384 0244 8A01      		movw r16,r20
+ 385 0246 7901      		movw r14,r18
+ 386 0248 0E94 0000 		call parse_digits
+ 387 024c EC01      		movw r28,r24
+ 388 024e 00C0      		rjmp .L64
+ 389               	.L65:
+ 390 0250 2196      		adiw r28,1
+ 391               	.L64:
+ 392 0252 8881      		ld r24,Y
+ 393 0254 8823      		tst r24
+ 394 0256 01F0      		breq .L66
+ 395 0258 9927      		clr r25
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 8
+
+
+ 396 025a 87FD      		sbrc r24,7
+ 397 025c 9095      		com r25
+ 398 025e 0E94 0000 		call isalpha
+ 399 0262 892B      		or r24,r25
+ 400 0264 01F0      		breq .L65
+ 401               	.L66:
+ 402 0266 B801      		movw r22,r16
+ 403 0268 CE01      		movw r24,r28
+ 404 026a 0E94 0000 		call TimeParseMonth
+ 405 026e FC01      		movw r30,r24
+ 406 0270 00C0      		rjmp .L68
+ 407               	.L69:
+ 408 0272 3196      		adiw r30,1
+ 409               	.L68:
+ 410 0274 8081      		ld r24,Z
+ 411 0276 8823      		tst r24
+ 412 0278 01F0      		breq .L70
+ 413 027a 9927      		clr r25
+ 414 027c 87FD      		sbrc r24,7
+ 415 027e 9095      		com r25
+ 416 0280 C097      		sbiw r24,48
+ 417 0282 0A97      		sbiw r24,10
+ 418 0284 00F4      		brsh .L69
+ 419               	.L70:
+ 420 0286 B701      		movw r22,r14
+ 421 0288 CF01      		movw r24,r30
+ 422 028a 0E94 0000 		call TimeParseYear
+ 423               	/* epilogue: frame size=0 */
+ 424 028e DF91      		pop r29
+ 425 0290 CF91      		pop r28
+ 426 0292 1F91      		pop r17
+ 427 0294 0F91      		pop r16
+ 428 0296 FF90      		pop r15
+ 429 0298 EF90      		pop r14
+ 430 029a 0895      		ret
+ 431               	/* epilogue end (size=7) */
+ 432               	/* function TimeParseDmy size 51 (38) */
+ 433               		.size	TimeParseDmy, .-TimeParseDmy
+ 434               		.data
+ 435               	.LC1:
+ 436 0020 474D 5400 		.string	"GMT"
+ 437               		.text
+ 438               	.global	RfcTimeParse
+ 439               		.type	RfcTimeParse, @function
+ 440               	RfcTimeParse:
+ 441               	/* prologue: frame size=18 */
+ 442 029c FF92      		push r15
+ 443 029e 0F93      		push r16
+ 444 02a0 1F93      		push r17
+ 445 02a2 CF93      		push r28
+ 446 02a4 DF93      		push r29
+ 447 02a6 CDB7      		in r28,__SP_L__
+ 448 02a8 DEB7      		in r29,__SP_H__
+ 449 02aa 6297      		sbiw r28,18
+ 450 02ac 0FB6      		in __tmp_reg__,__SREG__
+ 451 02ae F894      		cli
+ 452 02b0 DEBF      		out __SP_H__,r29
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 9
+
+
+ 453 02b2 0FBE      		out __SREG__,__tmp_reg__
+ 454 02b4 CDBF      		out __SP_L__,r28
+ 455               	/* prologue end (size=13) */
+ 456 02b6 22E1      		ldi r18,lo8(18)
+ 457 02b8 FE01      		movw r30,r28
+ 458 02ba 3196      		adiw r30,1
+ 459 02bc 1192      		st Z+,__zero_reg__
+ 460 02be 2A95      	        dec r18
+ 461 02c0 01F4      		brne .-6
+ 462 02c2 21E0      		ldi r18,lo8(1)
+ 463 02c4 30E0      		ldi r19,hi8(1)
+ 464 02c6 3887      		std Y+8,r19
+ 465 02c8 2F83      		std Y+7,r18
+ 466 02ca 0E94 0000 		call skip_spaces
+ 467 02ce 8C01      		movw r16,r24
+ 468 02d0 FC01      		movw r30,r24
+ 469 02d2 8081      		ld r24,Z
+ 470 02d4 9927      		clr r25
+ 471 02d6 87FD      		sbrc r24,7
+ 472 02d8 9095      		com r25
+ 473 02da 0E94 0000 		call isalpha
+ 474 02de 892B      		or r24,r25
+ 475 02e0 01F4      		brne .L88
+ 476 02e2 00C0      		rjmp .L75
+ 477               	.L76:
+ 478 02e4 0F5F      		subi r16,lo8(-(1))
+ 479 02e6 1F4F      		sbci r17,hi8(-(1))
+ 480               	.L88:
+ 481 02e8 F801      		movw r30,r16
+ 482 02ea 8081      		ld r24,Z
+ 483 02ec 8823      		tst r24
+ 484 02ee 01F0      		breq .L77
+ 485 02f0 8032      		cpi r24,lo8(32)
+ 486 02f2 01F0      		breq .L77
+ 487 02f4 8930      		cpi r24,lo8(9)
+ 488 02f6 01F4      		brne .L76
+ 489               	.L77:
+ 490 02f8 C801      		movw r24,r16
+ 491 02fa 0E94 0000 		call skip_spaces
+ 492 02fe 8C01      		movw r16,r24
+ 493               	.L75:
+ 494 0300 F801      		movw r30,r16
+ 495 0302 F080      		ld r15,Z
+ 496 0304 8F2D      		mov r24,r15
+ 497 0306 9927      		clr r25
+ 498 0308 87FD      		sbrc r24,7
+ 499 030a 9095      		com r25
+ 500 030c 0E94 0000 		call isalpha
+ 501 0310 892B      		or r24,r25
+ 502 0312 01F0      		breq .L80
+ 503 0314 BE01      		movw r22,r28
+ 504 0316 675F      		subi r22,lo8(-(9))
+ 505 0318 7F4F      		sbci r23,hi8(-(9))
+ 506 031a C801      		movw r24,r16
+ 507 031c 0E94 0000 		call TimeParseMonth
+ 508 0320 0E94 0000 		call skip_spaces
+ 509 0324 BE01      		movw r22,r28
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 10
+
+
+ 510 0326 695F      		subi r22,lo8(-(7))
+ 511 0328 7F4F      		sbci r23,hi8(-(7))
+ 512 032a 0E94 0000 		call parse_digits
+ 513 032e 0E94 0000 		call skip_spaces
+ 514 0332 BE01      		movw r22,r28
+ 515 0334 655F      		subi r22,lo8(-(11))
+ 516 0336 7F4F      		sbci r23,hi8(-(11))
+ 517 0338 0E94 0000 		call TimeParseYear
+ 518 033c 00C0      		rjmp .L89
+ 519               	.L80:
+ 520 033e FF20      		tst r15
+ 521 0340 01F0      		breq .L82
+ 522 0342 9E01      		movw r18,r28
+ 523 0344 255F      		subi r18,lo8(-(11))
+ 524 0346 3F4F      		sbci r19,hi8(-(11))
+ 525 0348 AE01      		movw r20,r28
+ 526 034a 475F      		subi r20,lo8(-(9))
+ 527 034c 5F4F      		sbci r21,hi8(-(9))
+ 528 034e BE01      		movw r22,r28
+ 529 0350 695F      		subi r22,lo8(-(7))
+ 530 0352 7F4F      		sbci r23,hi8(-(7))
+ 531 0354 C801      		movw r24,r16
+ 532 0356 0E94 0000 		call TimeParseDmy
+ 533               	.L89:
+ 534 035a 0E94 0000 		call skip_spaces
+ 535 035e 9E01      		movw r18,r28
+ 536 0360 2F5F      		subi r18,lo8(-(1))
+ 537 0362 3F4F      		sbci r19,hi8(-(1))
+ 538 0364 AE01      		movw r20,r28
+ 539 0366 4D5F      		subi r20,lo8(-(3))
+ 540 0368 5F4F      		sbci r21,hi8(-(3))
+ 541 036a BE01      		movw r22,r28
+ 542 036c 6B5F      		subi r22,lo8(-(5))
+ 543 036e 7F4F      		sbci r23,hi8(-(5))
+ 544 0370 0E94 0000 		call TimeParseHms
+ 545 0374 8C01      		movw r16,r24
+ 546               	.L82:
+ 547 0376 C801      		movw r24,r16
+ 548 0378 0E94 0000 		call skip_spaces
+ 549 037c 60E0      		ldi r22,lo8(.LC1)
+ 550 037e 70E0      		ldi r23,hi8(.LC1)
+ 551 0380 0E94 0000 		call strcmp
+ 552 0384 9E01      		movw r18,r28
+ 553 0386 2F5F      		subi r18,lo8(-(1))
+ 554 0388 3F4F      		sbci r19,hi8(-(1))
+ 555 038a 892B      		or r24,r25
+ 556 038c 01F0      		breq .L84
+ 557 038e C901      		movw r24,r18
+ 558 0390 0E94 0000 		call mktime
+ 559 0394 00C0      		rjmp .L86
+ 560               	.L84:
+ 561 0396 C901      		movw r24,r18
+ 562 0398 0E94 0000 		call _mkgmtime
+ 563               	.L86:
+ 564               	/* epilogue: frame size=18 */
+ 565 039c 6296      		adiw r28,18
+ 566 039e 0FB6      		in __tmp_reg__,__SREG__
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 11
+
+
+ 567 03a0 F894      		cli
+ 568 03a2 DEBF      		out __SP_H__,r29
+ 569 03a4 0FBE      		out __SREG__,__tmp_reg__
+ 570 03a6 CDBF      		out __SP_L__,r28
+ 571 03a8 DF91      		pop r29
+ 572 03aa CF91      		pop r28
+ 573 03ac 1F91      		pop r17
+ 574 03ae 0F91      		pop r16
+ 575 03b0 FF90      		pop r15
+ 576 03b2 0895      		ret
+ 577               	/* epilogue end (size=12) */
+ 578               	/* function RfcTimeParse size 140 (115) */
+ 579               		.size	RfcTimeParse, .-RfcTimeParse
+ 580               		.data
+ 581               	.LC2:
+ 582 0024 4A61 6E00 		.string	"Jan"
+ 583               	.LC3:
+ 584 0028 4665 6200 		.string	"Feb"
+ 585               	.LC4:
+ 586 002c 4D61 7200 		.string	"Mar"
+ 587               	.LC5:
+ 588 0030 4170 7200 		.string	"Apr"
+ 589               	.LC6:
+ 590 0034 4D61 7900 		.string	"May"
+ 591               	.LC7:
+ 592 0038 4A75 6E00 		.string	"Jun"
+ 593               	.LC8:
+ 594 003c 4A75 6C00 		.string	"Jul"
+ 595               	.LC9:
+ 596 0040 4175 6700 		.string	"Aug"
+ 597               	.LC10:
+ 598 0044 5365 7000 		.string	"Sep"
+ 599               	.LC11:
+ 600 0048 4F63 7400 		.string	"Oct"
+ 601               	.LC12:
+ 602 004c 4E6F 7600 		.string	"Nov"
+ 603               	.LC13:
+ 604 0050 4465 6300 		.string	"Dec"
+ 605               		.type	months, @object
+ 606               		.size	months, 24
+ 607               	months:
+ 608 0054 0000      		.word	.LC2
+ 609 0056 0000      		.word	.LC3
+ 610 0058 0000      		.word	.LC4
+ 611 005a 0000      		.word	.LC5
+ 612 005c 0000      		.word	.LC6
+ 613 005e 0000      		.word	.LC7
+ 614 0060 0000      		.word	.LC8
+ 615 0062 0000      		.word	.LC9
+ 616 0064 0000      		.word	.LC10
+ 617 0066 0000      		.word	.LC11
+ 618 0068 0000      		.word	.LC12
+ 619 006a 0000      		.word	.LC13
+ 620               	.LC14:
+ 621 006c 5375 6E00 		.string	"Sun"
+ 622               	.LC15:
+ 623 0070 4D6F 6E00 		.string	"Mon"
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 12
+
+
+ 624               	.LC16:
+ 625 0074 5475 6500 		.string	"Tue"
+ 626               	.LC17:
+ 627 0078 5765 6400 		.string	"Wed"
+ 628               	.LC18:
+ 629 007c 5468 7500 		.string	"Thu"
+ 630               	.LC19:
+ 631 0080 4672 6900 		.string	"Fri"
+ 632               	.LC20:
+ 633 0084 5361 7400 		.string	"Sat"
+ 634               		.type	wkdays, @object
+ 635               		.size	wkdays, 14
+ 636               	wkdays:
+ 637 0088 0000      		.word	.LC14
+ 638 008a 0000      		.word	.LC15
+ 639 008c 0000      		.word	.LC16
+ 640 008e 0000      		.word	.LC17
+ 641 0090 0000      		.word	.LC18
+ 642 0092 0000      		.word	.LC19
+ 643 0094 0000      		.word	.LC20
+ 644               		.lcomm rfc1123_buf,32
+ 645               	/* File "source/rfctime.c": code  476 = 0x01dc ( 408), prologues  31, epilogues  37 */
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 rfctime.c
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:3      *ABS*:0000003f __SREG__
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:4      *ABS*:0000003e __SP_H__
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:5      *ABS*:0000003d __SP_L__
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:12     .text:00000000 skip_spaces
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:32     .text:00000014 parse_digits
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:80     .text:0000005e TimeParseYear
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:115    .text:0000008e TimeParseHms
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:168    .text:000000de Rfc1123TimeString
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:607    .data:00000054 months
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:636    .data:00000088 wkdays
+                             .bss:00000000 rfc1123_buf
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:249    .text:00000170 TimeParseMonth
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:375    .text:00000238 TimeParseDmy
+C:\Users\Remco\AppData\Local\Temp/ccxj46tZ.s:440    .text:0000029c RfcTimeParse
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+sprintf
+isalpha
+strcmp
+mktime
+_mkgmtime

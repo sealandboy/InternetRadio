@@ -1,0 +1,708 @@
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 1
+
+
+   1               		.file	"httpopt.c"
+   2               		.arch atmega2561
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  10               		.text
+  11               	.global	NutHttpGetParameterCount
+  12               		.type	NutHttpGetParameterCount, @function
+  13               	NutHttpGetParameterCount:
+  14               	/* prologue: frame size=0 */
+  15               	/* prologue end (size=0) */
+  16 0000 FC01      		movw r30,r24
+  17 0002 8689      		ldd r24,Z+22
+  18 0004 9789      		ldd r25,Z+23
+  19               	/* epilogue: frame size=0 */
+  20 0006 0895      		ret
+  21               	/* epilogue end (size=1) */
+  22               	/* function NutHttpGetParameterCount size 4 (3) */
+  23               		.size	NutHttpGetParameterCount, .-NutHttpGetParameterCount
+  24               	.global	NutHttpGetParameter
+  25               		.type	NutHttpGetParameter, @function
+  26               	NutHttpGetParameter:
+  27               	/* prologue: frame size=0 */
+  28 0008 6F92      		push r6
+  29 000a 7F92      		push r7
+  30 000c 8F92      		push r8
+  31 000e 9F92      		push r9
+  32 0010 AF92      		push r10
+  33 0012 BF92      		push r11
+  34 0014 CF92      		push r12
+  35 0016 DF92      		push r13
+  36 0018 EF92      		push r14
+  37 001a FF92      		push r15
+  38 001c 0F93      		push r16
+  39 001e 1F93      		push r17
+  40 0020 CF93      		push r28
+  41 0022 DF93      		push r29
+  42               	/* prologue end (size=14) */
+  43 0024 5C01      		movw r10,r24
+  44 0026 3B01      		movw r6,r22
+  45 0028 FC01      		movw r30,r24
+  46 002a 8688      		ldd r8,Z+22
+  47 002c 9788      		ldd r9,Z+23
+  48 002e EE24      		clr r14
+  49 0030 FF24      		clr r15
+  50 0032 00E0      		ldi r16,lo8(0)
+  51 0034 10E0      		ldi r17,hi8(0)
+  52 0036 00C0      		rjmp .L4
+  53               	.L5:
+  54 0038 F501      		movw r30,r10
+  55 003a C489      		ldd r28,Z+20
+  56 003c D589      		ldd r29,Z+21
+  57 003e 6801      		movw r12,r16
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 2
+
+
+  58 0040 FE01      		movw r30,r28
+  59 0042 E00F      		add r30,r16
+  60 0044 F11F      		adc r31,r17
+  61 0046 B301      		movw r22,r6
+  62 0048 8081      		ld r24,Z
+  63 004a 9181      		ldd r25,Z+1
+  64 004c 0E94 0000 		call strcmp
+  65 0050 0C5F      		subi r16,lo8(-(4))
+  66 0052 1F4F      		sbci r17,hi8(-(4))
+  67 0054 892B      		or r24,r25
+  68 0056 01F4      		brne .L6
+  69 0058 CC0D      		add r28,r12
+  70 005a DD1D      		adc r29,r13
+  71 005c 8A81      		ldd r24,Y+2
+  72 005e 9B81      		ldd r25,Y+3
+  73 0060 00C0      		rjmp .L8
+  74               	.L6:
+  75 0062 0894      		sec
+  76 0064 E11C      		adc r14,__zero_reg__
+  77 0066 F11C      		adc r15,__zero_reg__
+  78               	.L4:
+  79 0068 E814      		cp r14,r8
+  80 006a F904      		cpc r15,r9
+  81 006c 04F0      		brlt .L5
+  82 006e 80E0      		ldi r24,lo8(0)
+  83 0070 90E0      		ldi r25,hi8(0)
+  84               	.L8:
+  85               	/* epilogue: frame size=0 */
+  86 0072 DF91      		pop r29
+  87 0074 CF91      		pop r28
+  88 0076 1F91      		pop r17
+  89 0078 0F91      		pop r16
+  90 007a FF90      		pop r15
+  91 007c EF90      		pop r14
+  92 007e DF90      		pop r13
+  93 0080 CF90      		pop r12
+  94 0082 BF90      		pop r11
+  95 0084 AF90      		pop r10
+  96 0086 9F90      		pop r9
+  97 0088 8F90      		pop r8
+  98 008a 7F90      		pop r7
+  99 008c 6F90      		pop r6
+ 100 008e 0895      		ret
+ 101               	/* epilogue end (size=15) */
+ 102               	/* function NutHttpGetParameter size 68 (39) */
+ 103               		.size	NutHttpGetParameter, .-NutHttpGetParameter
+ 104               	.global	NutHttpProcessPostQuery
+ 105               		.type	NutHttpProcessPostQuery, @function
+ 106               	NutHttpProcessPostQuery:
+ 107               	/* prologue: frame size=0 */
+ 108 0090 CF92      		push r12
+ 109 0092 DF92      		push r13
+ 110 0094 EF92      		push r14
+ 111 0096 FF92      		push r15
+ 112 0098 0F93      		push r16
+ 113 009a 1F93      		push r17
+ 114 009c CF93      		push r28
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 3
+
+
+ 115 009e DF93      		push r29
+ 116               	/* prologue end (size=8) */
+ 117 00a0 6C01      		movw r12,r24
+ 118 00a2 EB01      		movw r28,r22
+ 119 00a4 8A85      		ldd r24,Y+10
+ 120 00a6 9B85      		ldd r25,Y+11
+ 121 00a8 892B      		or r24,r25
+ 122 00aa 01F0      		breq .+2
+ 123 00ac 00C0      		rjmp .L42
+ 124 00ae C114      		cp r12,__zero_reg__
+ 125 00b0 D104      		cpc r13,__zero_reg__
+ 126 00b2 01F4      		brne .+2
+ 127 00b4 00C0      		rjmp .L42
+ 128 00b6 8881      		ld r24,Y
+ 129 00b8 9981      		ldd r25,Y+1
+ 130 00ba 0297      		sbiw r24,2
+ 131 00bc 01F0      		breq .+2
+ 132 00be 00C0      		rjmp .L42
+ 133 00c0 8C81      		ldd r24,Y+4
+ 134 00c2 9D81      		ldd r25,Y+5
+ 135 00c4 0196      		adiw r24,1
+ 136 00c6 0E94 0000 		call malloc
+ 137 00ca 9B87      		std Y+11,r25
+ 138 00cc 8A87      		std Y+10,r24
+ 139 00ce 0097      		sbiw r24,0
+ 140 00d0 01F4      		brne .L16
+ 141 00d2 1F8A      		std Y+23,__zero_reg__
+ 142 00d4 1E8A      		std Y+22,__zero_reg__
+ 143 00d6 00C0      		rjmp .L42
+ 144               	.L16:
+ 145 00d8 4C81      		ldd r20,Y+4
+ 146 00da 5D81      		ldd r21,Y+5
+ 147 00dc 4F5F      		subi r20,lo8(-(1))
+ 148 00de 5F4F      		sbci r21,hi8(-(1))
+ 149 00e0 60E0      		ldi r22,lo8(0)
+ 150 00e2 70E0      		ldi r23,hi8(0)
+ 151 00e4 0E94 0000 		call memset
+ 152 00e8 EE24      		clr r14
+ 153 00ea FF24      		clr r15
+ 154 00ec 00C0      		rjmp .L18
+ 155               	.L19:
+ 156 00ee 4E19      		sub r20,r14
+ 157 00f0 5F09      		sbc r21,r15
+ 158 00f2 9601      		movw r18,r12
+ 159 00f4 61E0      		ldi r22,lo8(1)
+ 160 00f6 70E0      		ldi r23,hi8(1)
+ 161 00f8 C701      		movw r24,r14
+ 162 00fa 800F      		add r24,r16
+ 163 00fc 911F      		adc r25,r17
+ 164 00fe 0E94 0000 		call fread
+ 165 0102 1816      		cp __zero_reg__,r24
+ 166 0104 1906      		cpc __zero_reg__,r25
+ 167 0106 04F4      		brge .L43
+ 168 0108 E80E      		add r14,r24
+ 169 010a F91E      		adc r15,r25
+ 170               	.L18:
+ 171 010c 4C81      		ldd r20,Y+4
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 4
+
+
+ 172 010e 5D81      		ldd r21,Y+5
+ 173 0110 6E81      		ldd r22,Y+6
+ 174 0112 7F81      		ldd r23,Y+7
+ 175 0114 C701      		movw r24,r14
+ 176 0116 AA27      		clr r26
+ 177 0118 97FD      		sbrc r25,7
+ 178 011a A095      		com r26
+ 179 011c BA2F      		mov r27,r26
+ 180 011e 0A85      		ldd r16,Y+10
+ 181 0120 1B85      		ldd r17,Y+11
+ 182 0122 8417      		cp r24,r20
+ 183 0124 9507      		cpc r25,r21
+ 184 0126 A607      		cpc r26,r22
+ 185 0128 B707      		cpc r27,r23
+ 186 012a 04F0      		brlt .L19
+ 187 012c 81E0      		ldi r24,lo8(1)
+ 188 012e 90E0      		ldi r25,hi8(1)
+ 189 0130 9F8B      		std Y+23,r25
+ 190 0132 8E8B      		std Y+22,r24
+ 191 0134 F801      		movw r30,r16
+ 192 0136 00C0      		rjmp .L23
+ 193               	.L24:
+ 194 0138 8632      		cpi r24,lo8(38)
+ 195 013a 01F4      		brne .L25
+ 196 013c 8E89      		ldd r24,Y+22
+ 197 013e 9F89      		ldd r25,Y+23
+ 198 0140 0196      		adiw r24,1
+ 199 0142 9F8B      		std Y+23,r25
+ 200 0144 8E8B      		std Y+22,r24
+ 201               	.L25:
+ 202 0146 3196      		adiw r30,1
+ 203               	.L23:
+ 204 0148 8081      		ld r24,Z
+ 205 014a 8823      		tst r24
+ 206 014c 01F4      		brne .L24
+ 207 014e 8E89      		ldd r24,Y+22
+ 208 0150 9F89      		ldd r25,Y+23
+ 209 0152 880F      		lsl r24
+ 210 0154 991F      		rol r25
+ 211 0156 880F      		lsl r24
+ 212 0158 991F      		rol r25
+ 213 015a 0E94 0000 		call malloc
+ 214 015e FC01      		movw r30,r24
+ 215 0160 9D8B      		std Y+21,r25
+ 216 0162 8C8B      		std Y+20,r24
+ 217 0164 0A85      		ldd r16,Y+10
+ 218 0166 1B85      		ldd r17,Y+11
+ 219 0168 892B      		or r24,r25
+ 220 016a 01F4      		brne .L28
+ 221 016c C801      		movw r24,r16
+ 222 016e 00C0      		rjmp .L45
+ 223               	.L43:
+ 224 0170 8A85      		ldd r24,Y+10
+ 225 0172 9B85      		ldd r25,Y+11
+ 226               	.L45:
+ 227 0174 0E94 0000 		call free
+ 228 0178 1F8A      		std Y+23,__zero_reg__
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 5
+
+
+ 229 017a 1E8A      		std Y+22,__zero_reg__
+ 230 017c 1B86      		std Y+11,__zero_reg__
+ 231 017e 1A86      		std Y+10,__zero_reg__
+ 232 0180 00C0      		rjmp .L42
+ 233               	.L28:
+ 234 0182 D801      		movw r26,r16
+ 235 0184 1183      		std Z+1,r17
+ 236 0186 0083      		st Z,r16
+ 237 0188 1382      		std Z+3,__zero_reg__
+ 238 018a 1282      		std Z+2,__zero_reg__
+ 239 018c 24E0      		ldi r18,lo8(4)
+ 240 018e 30E0      		ldi r19,hi8(4)
+ 241 0190 00C0      		rjmp .L30
+ 242               	.L31:
+ 243 0192 8632      		cpi r24,lo8(38)
+ 244 0194 01F4      		brne .L32
+ 245 0196 EC89      		ldd r30,Y+20
+ 246 0198 FD89      		ldd r31,Y+21
+ 247 019a E20F      		add r30,r18
+ 248 019c F31F      		adc r31,r19
+ 249 019e 1196      		adiw r26,1
+ 250 01a0 B183      		std Z+1,r27
+ 251 01a2 A083      		st Z,r26
+ 252 01a4 1382      		std Z+3,__zero_reg__
+ 253 01a6 1282      		std Z+2,__zero_reg__
+ 254 01a8 1E92      		st -X,__zero_reg__
+ 255 01aa 2C5F      		subi r18,lo8(-(4))
+ 256 01ac 3F4F      		sbci r19,hi8(-(4))
+ 257               	.L32:
+ 258 01ae 1196      		adiw r26,1
+ 259               	.L30:
+ 260 01b0 8C91      		ld r24,X
+ 261 01b2 8823      		tst r24
+ 262 01b4 01F4      		brne .L31
+ 263 01b6 EE24      		clr r14
+ 264 01b8 FF24      		clr r15
+ 265 01ba 00E0      		ldi r16,lo8(0)
+ 266 01bc 10E0      		ldi r17,hi8(0)
+ 267 01be 00C0      		rjmp .L35
+ 268               	.L44:
+ 269 01c0 FD01      		movw r30,r26
+ 270 01c2 9383      		std Z+3,r25
+ 271 01c4 8283      		std Z+2,r24
+ 272 01c6 FA01      		movw r30,r20
+ 273 01c8 1082      		st Z,__zero_reg__
+ 274 01ca EC89      		ldd r30,Y+20
+ 275 01cc FD89      		ldd r31,Y+21
+ 276 01ce E00F      		add r30,r16
+ 277 01d0 F11F      		adc r31,r17
+ 278 01d2 8281      		ldd r24,Z+2
+ 279 01d4 9381      		ldd r25,Z+3
+ 280 01d6 0E94 0000 		call NutHttpURLDecode
+ 281 01da 00C0      		rjmp .L41
+ 282               	.L36:
+ 283 01dc AC89      		ldd r26,Y+20
+ 284 01de BD89      		ldd r27,Y+21
+ 285 01e0 A00F      		add r26,r16
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 6
+
+
+ 286 01e2 B11F      		adc r27,r17
+ 287 01e4 4D91      		ld r20,X+
+ 288 01e6 5C91      		ld r21,X
+ 289 01e8 1197      		sbiw r26,1
+ 290 01ea 00C0      		rjmp .L37
+ 291               	.L38:
+ 292 01ec CA01      		movw r24,r20
+ 293 01ee 0196      		adiw r24,1
+ 294 01f0 2D33      		cpi r18,lo8(61)
+ 295 01f2 01F0      		breq .L44
+ 296 01f4 AC01      		movw r20,r24
+ 297               	.L37:
+ 298 01f6 FA01      		movw r30,r20
+ 299 01f8 2081      		ld r18,Z
+ 300 01fa 2223      		tst r18
+ 301 01fc 01F4      		brne .L38
+ 302               	.L41:
+ 303 01fe EC89      		ldd r30,Y+20
+ 304 0200 FD89      		ldd r31,Y+21
+ 305 0202 E00F      		add r30,r16
+ 306 0204 F11F      		adc r31,r17
+ 307 0206 8081      		ld r24,Z
+ 308 0208 9181      		ldd r25,Z+1
+ 309 020a 0E94 0000 		call NutHttpURLDecode
+ 310 020e 0894      		sec
+ 311 0210 E11C      		adc r14,__zero_reg__
+ 312 0212 F11C      		adc r15,__zero_reg__
+ 313 0214 0C5F      		subi r16,lo8(-(4))
+ 314 0216 1F4F      		sbci r17,hi8(-(4))
+ 315               	.L35:
+ 316 0218 8E89      		ldd r24,Y+22
+ 317 021a 9F89      		ldd r25,Y+23
+ 318 021c E816      		cp r14,r24
+ 319 021e F906      		cpc r15,r25
+ 320 0220 04F0      		brlt .L36
+ 321               	.L42:
+ 322               	/* epilogue: frame size=0 */
+ 323 0222 DF91      		pop r29
+ 324 0224 CF91      		pop r28
+ 325 0226 1F91      		pop r17
+ 326 0228 0F91      		pop r16
+ 327 022a FF90      		pop r15
+ 328 022c EF90      		pop r14
+ 329 022e DF90      		pop r13
+ 330 0230 CF90      		pop r12
+ 331 0232 0895      		ret
+ 332               	/* epilogue end (size=9) */
+ 333               	/* function NutHttpProcessPostQuery size 212 (195) */
+ 334               		.size	NutHttpProcessPostQuery, .-NutHttpProcessPostQuery
+ 335               	.global	NutHttpURLEncode
+ 336               		.type	NutHttpURLEncode, @function
+ 337               	NutHttpURLEncode:
+ 338               	/* prologue: frame size=0 */
+ 339 0234 AF92      		push r10
+ 340 0236 BF92      		push r11
+ 341 0238 CF92      		push r12
+ 342 023a DF92      		push r13
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 7
+
+
+ 343 023c EF92      		push r14
+ 344 023e FF92      		push r15
+ 345 0240 1F93      		push r17
+ 346 0242 CF93      		push r28
+ 347 0244 DF93      		push r29
+ 348               	/* prologue end (size=9) */
+ 349 0246 EC01      		movw r28,r24
+ 350 0248 0097      		sbiw r24,0
+ 351 024a 01F4      		brne .L47
+ 352 024c CC24      		clr r12
+ 353 024e DD24      		clr r13
+ 354 0250 00C0      		rjmp .L49
+ 355               	.L47:
+ 356 0252 7C01      		movw r14,r24
+ 357 0254 CC24      		clr r12
+ 358 0256 DD24      		clr r13
+ 359 0258 00C0      		rjmp .L50
+ 360               	.L51:
+ 361 025a 812F      		mov r24,r17
+ 362 025c 9927      		clr r25
+ 363 025e 87FD      		sbrc r24,7
+ 364 0260 9095      		com r25
+ 365 0262 0E94 0000 		call isalnum
+ 366 0266 892B      		or r24,r25
+ 367 0268 01F0      		breq .L52
+ 368 026a 1532      		cpi r17,lo8(37)
+ 369 026c 01F0      		breq .L52
+ 370 026e 1632      		cpi r17,lo8(38)
+ 371 0270 01F0      		breq .L52
+ 372 0272 1B32      		cpi r17,lo8(43)
+ 373 0274 01F0      		breq .L52
+ 374 0276 1C32      		cpi r17,lo8(44)
+ 375 0278 01F0      		breq .L52
+ 376 027a 1A33      		cpi r17,lo8(58)
+ 377 027c 01F0      		breq .L52
+ 378 027e 1B33      		cpi r17,lo8(59)
+ 379 0280 01F0      		breq .L52
+ 380 0282 1D33      		cpi r17,lo8(61)
+ 381 0284 01F0      		breq .L52
+ 382 0286 1F33      		cpi r17,lo8(63)
+ 383 0288 01F0      		breq .L52
+ 384 028a 1034      		cpi r17,lo8(64)
+ 385 028c 01F4      		brne .L62
+ 386               	.L52:
+ 387 028e 0894      		sec
+ 388 0290 C11C      		adc r12,__zero_reg__
+ 389 0292 D11C      		adc r13,__zero_reg__
+ 390               	.L62:
+ 391 0294 0894      		sec
+ 392 0296 E11C      		adc r14,__zero_reg__
+ 393 0298 F11C      		adc r15,__zero_reg__
+ 394               	.L50:
+ 395 029a F701      		movw r30,r14
+ 396 029c 1081      		ld r17,Z
+ 397 029e 1123      		tst r17
+ 398 02a0 01F4      		brne .L51
+ 399 02a2 CC0C      		lsl r12
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 8
+
+
+ 400 02a4 DD1C      		rol r13
+ 401 02a6 FE01      		movw r30,r28
+ 402 02a8 0190      		ld __tmp_reg__,Z+
+ 403 02aa 0020      		tst __tmp_reg__
+ 404 02ac 01F4      		brne .-6
+ 405 02ae EC1B      		sub r30,r28
+ 406 02b0 FD0B      		sbc r31,r29
+ 407 02b2 C601      		movw r24,r12
+ 408 02b4 8E0F      		add r24,r30
+ 409 02b6 9F1F      		adc r25,r31
+ 410 02b8 0E94 0000 		call malloc
+ 411 02bc 6C01      		movw r12,r24
+ 412 02be A090 0000 		lds r10,hexdigits
+ 413 02c2 B090 0000 		lds r11,(hexdigits)+1
+ 414 02c6 7E01      		movw r14,r28
+ 415 02c8 EC01      		movw r28,r24
+ 416 02ca 00C0      		rjmp .L64
+ 417               	.L65:
+ 418 02cc 812F      		mov r24,r17
+ 419 02ce 9927      		clr r25
+ 420 02d0 87FD      		sbrc r24,7
+ 421 02d2 9095      		com r25
+ 422 02d4 0E94 0000 		call isalnum
+ 423 02d8 892B      		or r24,r25
+ 424 02da 01F4      		brne .L66
+ 425 02dc 1532      		cpi r17,lo8(37)
+ 426 02de 01F0      		breq .L66
+ 427 02e0 1632      		cpi r17,lo8(38)
+ 428 02e2 01F0      		breq .L66
+ 429 02e4 1B32      		cpi r17,lo8(43)
+ 430 02e6 01F0      		breq .L66
+ 431 02e8 1C32      		cpi r17,lo8(44)
+ 432 02ea 01F0      		breq .L66
+ 433 02ec 1A33      		cpi r17,lo8(58)
+ 434 02ee 01F0      		breq .L66
+ 435 02f0 1B33      		cpi r17,lo8(59)
+ 436 02f2 01F0      		breq .L66
+ 437 02f4 1D33      		cpi r17,lo8(61)
+ 438 02f6 01F0      		breq .L66
+ 439 02f8 1F33      		cpi r17,lo8(63)
+ 440 02fa 01F0      		breq .L66
+ 441 02fc 1034      		cpi r17,lo8(64)
+ 442 02fe 01F4      		brne .L76
+ 443               	.L66:
+ 444 0300 1993      		st Y+,r17
+ 445 0302 00C0      		rjmp .L77
+ 446               	.L76:
+ 447 0304 DE01      		movw r26,r28
+ 448 0306 85E2      		ldi r24,lo8(37)
+ 449 0308 8D93      		st X+,r24
+ 450 030a F701      		movw r30,r14
+ 451 030c 8081      		ld r24,Z
+ 452 030e 8595      		asr r24
+ 453 0310 8595      		asr r24
+ 454 0312 8595      		asr r24
+ 455 0314 8595      		asr r24
+ 456 0316 E82F      		mov r30,r24
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 9
+
+
+ 457 0318 FF27      		clr r31
+ 458 031a E7FD      		sbrc r30,7
+ 459 031c F095      		com r31
+ 460 031e EA0D      		add r30,r10
+ 461 0320 FB1D      		adc r31,r11
+ 462 0322 8081      		ld r24,Z
+ 463 0324 8983      		std Y+1,r24
+ 464 0326 F701      		movw r30,r14
+ 465 0328 8081      		ld r24,Z
+ 466 032a 8F70      		andi r24,lo8(15)
+ 467 032c F501      		movw r30,r10
+ 468 032e E80F      		add r30,r24
+ 469 0330 F11D      		adc r31,__zero_reg__
+ 470 0332 8081      		ld r24,Z
+ 471 0334 FD01      		movw r30,r26
+ 472 0336 8183      		std Z+1,r24
+ 473 0338 ED01      		movw r28,r26
+ 474 033a 2296      		adiw r28,2
+ 475               	.L77:
+ 476 033c 0894      		sec
+ 477 033e E11C      		adc r14,__zero_reg__
+ 478 0340 F11C      		adc r15,__zero_reg__
+ 479               	.L64:
+ 480 0342 F701      		movw r30,r14
+ 481 0344 1081      		ld r17,Z
+ 482 0346 1123      		tst r17
+ 483 0348 01F4      		brne .L65
+ 484 034a 1882      		st Y,__zero_reg__
+ 485               	.L49:
+ 486 034c C601      		movw r24,r12
+ 487               	/* epilogue: frame size=0 */
+ 488 034e DF91      		pop r29
+ 489 0350 CF91      		pop r28
+ 490 0352 1F91      		pop r17
+ 491 0354 FF90      		pop r15
+ 492 0356 EF90      		pop r14
+ 493 0358 DF90      		pop r13
+ 494 035a CF90      		pop r12
+ 495 035c BF90      		pop r11
+ 496 035e AF90      		pop r10
+ 497 0360 0895      		ret
+ 498               	/* epilogue end (size=10) */
+ 499               	/* function NutHttpURLEncode size 151 (132) */
+ 500               		.size	NutHttpURLEncode, .-NutHttpURLEncode
+ 501               	.global	NutSetMimeHandler
+ 502               		.type	NutSetMimeHandler, @function
+ 503               	NutSetMimeHandler:
+ 504               	/* prologue: frame size=0 */
+ 505 0362 CF92      		push r12
+ 506 0364 DF92      		push r13
+ 507 0366 EF92      		push r14
+ 508 0368 FF92      		push r15
+ 509 036a 0F93      		push r16
+ 510 036c 1F93      		push r17
+ 511 036e CF93      		push r28
+ 512 0370 DF93      		push r29
+ 513               	/* prologue end (size=8) */
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 10
+
+
+ 514 0372 7C01      		movw r14,r24
+ 515 0374 6B01      		movw r12,r22
+ 516 0376 892B      		or r24,r25
+ 517 0378 01F0      		breq .L81
+ 518 037a C0E0      		ldi r28,lo8(mimeTypes)
+ 519 037c D0E0      		ldi r29,hi8(mimeTypes)
+ 520 037e 8E01      		movw r16,r28
+ 521 0380 0C5F      		subi r16,lo8(-(4))
+ 522 0382 1F4F      		sbci r17,hi8(-(4))
+ 523 0384 00C0      		rjmp .L83
+ 524               	.L84:
+ 525 0386 2696      		adiw r28,6
+ 526 0388 C701      		movw r24,r14
+ 527 038a 0E94 0000 		call strcasecmp
+ 528 038e 892B      		or r24,r25
+ 529 0390 01F4      		brne .L85
+ 530 0392 F801      		movw r30,r16
+ 531 0394 D182      		std Z+1,r13
+ 532 0396 C082      		st Z,r12
+ 533 0398 80E0      		ldi r24,lo8(0)
+ 534 039a 90E0      		ldi r25,hi8(0)
+ 535 039c 00C0      		rjmp .L87
+ 536               	.L85:
+ 537 039e 0A5F      		subi r16,lo8(-(6))
+ 538 03a0 1F4F      		sbci r17,hi8(-(6))
+ 539               	.L83:
+ 540 03a2 6881      		ld r22,Y
+ 541 03a4 7981      		ldd r23,Y+1
+ 542 03a6 6115      		cp r22,__zero_reg__
+ 543 03a8 7105      		cpc r23,__zero_reg__
+ 544 03aa 01F4      		brne .L84
+ 545               	.L81:
+ 546 03ac 81E0      		ldi r24,lo8(1)
+ 547 03ae 90E0      		ldi r25,hi8(1)
+ 548               	.L87:
+ 549               	/* epilogue: frame size=0 */
+ 550 03b0 DF91      		pop r29
+ 551 03b2 CF91      		pop r28
+ 552 03b4 1F91      		pop r17
+ 553 03b6 0F91      		pop r16
+ 554 03b8 FF90      		pop r15
+ 555 03ba EF90      		pop r14
+ 556 03bc DF90      		pop r13
+ 557 03be CF90      		pop r12
+ 558 03c0 0895      		ret
+ 559               	/* epilogue end (size=9) */
+ 560               	/* function NutSetMimeHandler size 48 (31) */
+ 561               		.size	NutSetMimeHandler, .-NutSetMimeHandler
+ 562               	.global	NutHttpGetParameterName
+ 563               		.type	NutHttpGetParameterName, @function
+ 564               	NutHttpGetParameterName:
+ 565               	/* prologue: frame size=0 */
+ 566               	/* prologue end (size=0) */
+ 567 03c2 FC01      		movw r30,r24
+ 568 03c4 77FD      		sbrc r23,7
+ 569 03c6 00C0      		rjmp .L90
+ 570 03c8 8689      		ldd r24,Z+22
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 11
+
+
+ 571 03ca 9789      		ldd r25,Z+23
+ 572 03cc 6817      		cp r22,r24
+ 573 03ce 7907      		cpc r23,r25
+ 574 03d0 04F4      		brge .L90
+ 575 03d2 660F      		lsl r22
+ 576 03d4 771F      		rol r23
+ 577 03d6 660F      		lsl r22
+ 578 03d8 771F      		rol r23
+ 579 03da 0488      		ldd __tmp_reg__,Z+20
+ 580 03dc F589      		ldd r31,Z+21
+ 581 03de E02D      		mov r30,__tmp_reg__
+ 582 03e0 E60F      		add r30,r22
+ 583 03e2 F71F      		adc r31,r23
+ 584 03e4 8081      		ld r24,Z
+ 585 03e6 9181      		ldd r25,Z+1
+ 586 03e8 0895      		ret
+ 587               	.L90:
+ 588 03ea 80E0      		ldi r24,lo8(0)
+ 589 03ec 90E0      		ldi r25,hi8(0)
+ 590 03ee 0895      		ret
+ 591               	/* epilogue: frame size=0 */
+ 592               	/* epilogue: noreturn */
+ 593               	/* epilogue end (size=0) */
+ 594               	/* function NutHttpGetParameterName size 23 (23) */
+ 595               		.size	NutHttpGetParameterName, .-NutHttpGetParameterName
+ 596               	.global	NutHttpGetParameterValue
+ 597               		.type	NutHttpGetParameterValue, @function
+ 598               	NutHttpGetParameterValue:
+ 599               	/* prologue: frame size=0 */
+ 600               	/* prologue end (size=0) */
+ 601 03f0 FC01      		movw r30,r24
+ 602 03f2 77FD      		sbrc r23,7
+ 603 03f4 00C0      		rjmp .L96
+ 604 03f6 8689      		ldd r24,Z+22
+ 605 03f8 9789      		ldd r25,Z+23
+ 606 03fa 6817      		cp r22,r24
+ 607 03fc 7907      		cpc r23,r25
+ 608 03fe 04F4      		brge .L96
+ 609 0400 660F      		lsl r22
+ 610 0402 771F      		rol r23
+ 611 0404 660F      		lsl r22
+ 612 0406 771F      		rol r23
+ 613 0408 0488      		ldd __tmp_reg__,Z+20
+ 614 040a F589      		ldd r31,Z+21
+ 615 040c E02D      		mov r30,__tmp_reg__
+ 616 040e E60F      		add r30,r22
+ 617 0410 F71F      		adc r31,r23
+ 618 0412 8281      		ldd r24,Z+2
+ 619 0414 9381      		ldd r25,Z+3
+ 620 0416 0895      		ret
+ 621               	.L96:
+ 622 0418 80E0      		ldi r24,lo8(0)
+ 623 041a 90E0      		ldi r25,hi8(0)
+ 624 041c 0895      		ret
+ 625               	/* epilogue: frame size=0 */
+ 626               	/* epilogue: noreturn */
+ 627               	/* epilogue end (size=0) */
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 12
+
+
+ 628               	/* function NutHttpGetParameterValue size 23 (23) */
+ 629               		.size	NutHttpGetParameterValue, .-NutHttpGetParameterValue
+ 630               		.data
+ 631               	.LC0:
+ 632 0000 3031 3233 		.string	"0123456789ABCDEF"
+ 632      3435 3637 
+ 632      3839 4142 
+ 632      4344 4546 
+ 632      00
+ 633               		.type	hexdigits, @object
+ 634               		.size	hexdigits, 2
+ 635               	hexdigits:
+ 636 0011 0000      		.word	.LC0
+ 637               	/* File "source/httpopt.c": code  529 = 0x0211 ( 446), prologues  39, epilogues  44 */
+GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 httpopt.c
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:3      *ABS*:0000003f __SREG__
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:4      *ABS*:0000003e __SP_H__
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:5      *ABS*:0000003d __SP_L__
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:13     .text:00000000 NutHttpGetParameterCount
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:26     .text:00000008 NutHttpGetParameter
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:106    .text:00000090 NutHttpProcessPostQuery
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:337    .text:00000234 NutHttpURLEncode
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:635    .data:00000011 hexdigits
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:503    .text:00000362 NutSetMimeHandler
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:564    .text:000003c2 NutHttpGetParameterName
+C:\Users\Remco\AppData\Local\Temp/ccfM9ZnL.s:598    .text:000003f0 NutHttpGetParameterValue
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+strcmp
+malloc
+memset
+fread
+free
+NutHttpURLDecode
+isalnum
+mimeTypes
+strcasecmp
