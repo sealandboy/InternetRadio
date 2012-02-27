@@ -894,7 +894,8 @@ int main(void)
 
 #ifdef MY_BLKDEV
     /* Register block device. */
-    printf("Registering block device '" MY_BLKDEV_NAME "'...");
+    //printf("Registering block device '" MY_BLKDEV_NAME "'...");
+	printf("Registering block device");
     if (NutRegisterDevice(&MY_BLKDEV, 0, 0)) {
         puts("failed");
         for (;;);
@@ -902,7 +903,8 @@ int main(void)
     puts("OK");
 
     /* Mount partition. */
-    printf("Mounting block device '" MY_BLKDEV_NAME ":1/" MY_FSDEV_NAME "'...");
+    //printf("Mounting block device '" MY_BLKDEV_NAME ":1/" MY_FSDEV_NAME "'...");
+	printf("Mounting block device ");
     if (_open(MY_BLKDEV_NAME ":1/" MY_FSDEV_NAME, _O_RDWR | _O_BINARY) == -1) {
         puts("failed");
         for (;;);
@@ -969,7 +971,8 @@ int main(void)
      */
     NutThreadSetPriority(254);
     for (;;) {
-        NutSleep(60000);
+        NutSleep(2000);
+		printf("DIDN'T CRASH \n");
     }
     return 0;
 }

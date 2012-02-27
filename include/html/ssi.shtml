@@ -1,0 +1,9 @@
+<html>
+<head><title>ASP</title></head>
+<body>
+<h1><a href="/index.html"><img src="nutlogo.png" border=0 align=left></a>nut/os<br>Server Side Include</h1>
+----- Start -----<br>
+<!-- #include virtual="/include.inc" -->
+----- End -----<br>
+</body>
+</html>

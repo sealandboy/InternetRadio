@@ -49,7 +49,7 @@
 #define USE_DISCOVERY
 
 /* Wether to use PHAT file system. UROM is default. */
-//#define USE_PHAT
+// #define USE_PHAT
 
 /* Wether to use date and time functions. */
 #define USE_DATE_AND_TIME
@@ -65,6 +65,14 @@
 
 /* Wether to use dynamically created threads. */
 #define USE_DYNAMIC_THREADS
+
+/* REMCO - overige defines */
+// #define MY_BLKDEV
+#define MY_HTTPROOT
+#define USE_CGI_PARAMETERS
+#define USE_SSI
+#define USE_ASP
+#define MY_FSDEV_NAME
 
 
 
@@ -151,14 +159,14 @@
 
 #ifdef USE_PHAT
 /* MMC device drivers used by different boards. */
-#if defined(ETHERNUT3)
+//remco #if defined(ETHERNUT3)
 #define MY_BLKDEV      devNplMmc0
 #elif defined(AT91SAM7X_EK)
 #define MY_BLKDEV      devAt91SpiMmc0
 #elif defined(AT91SAM9260_EK)
 #define MY_BLKDEV      devAt91Mci0
 #define MY_BLKDEV_NAME "MCI0"
-#endif
+//remco #endif
 
 /* Name of the MMC device driver. */
 #ifndef MY_BLKDEV_NAME
@@ -183,7 +191,7 @@
 #endif
 
 #ifdef MY_FSDEV_NAME
-#define MY_HTTPROOT     MY_FSDEV_NAME ":/" 
+#define MY_HTTPROOT     MY_FSDEV_NAME ":/html/" 
 #endif
 
 /* ICCAVR Demo is limited. Try to use the bare minimum. */
