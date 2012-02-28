@@ -218,6 +218,47 @@ static void LcdWaitBusy()
     cbi (LCD_RW_PORT, LCD_RW);              // we are going to write
 }
 
+void writeLcd(char text1[], char text2[])
+{
+	int i;
+	for ( i=0; i<80; i++ )
+	{
+		LcdChar( ' ' );
+	}
+	lcd_writeLine1(text1);
+	lcd_writeLine2(text2);
+}
+
+// write upper line
+void lcd_writeLine1 ( char text1[] )
+{
+	int i;
+	// eerst de eerste 8 karakters = regel 1
+	//lcdCommand(0x80);			// first position, line 1, adress $00
+	for ( i=0; i<40; i++ )
+	{
+		LcdChar( text1[i] );
+	}
+} 
+
+// write second line
+void lcd_writeLine2 ( char text2[] )
+{
+	int i;
+	// dan de tweede 8 karakters = regel 2
+	//lcdCommand(0xC0);			// first position, line 2, adress $40
+
+	for ( i=0; i<10; i++ )
+	{
+		LcdChar( text2[i] );
+	}
+	
+	for ( i=0; i<30; i++ )
+	{
+		LcdChar( ' ' );
+	}
+} 
+ 
 /* ---------- end of module ------------------------------------------------ */
 
 /*@}*/

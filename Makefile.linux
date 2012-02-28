@@ -5,9 +5,9 @@ SRC_DIR	= ./source
 INC_DIR = ./include
 
 # NutOS location (includes and libs)
-NUT_INC = /home/michel/Downloads/ethernut-4.3.3/nut/include
-NUT_BUILD_INC = /home/michel/Downloads/ethernut-4.3.3/nut/include
-NUT_LIB_DIR = /home/michel/Downloads/ethernut-4.3.3/nut/lib
+NUT_INC = /opt/ethernut/include
+NUT_BUILD_INC = /opt/ethernut/include
+NUT_LIB_DIR = /opt/ethernut/lib
 
 # WinAvr includes
 AVR_INC = /bin/lib/avr

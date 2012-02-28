@@ -90,19 +90,36 @@
  *
  * Simple multithreaded HTTP daemon.
  */
+#define LOG_MODULE  LOG_MAIN_MODULE
 
 #include "main.h"
+#include "log.h"
+#include "system.h"
+#include "portio.h"
+#include "display.h"
+#include "remcon.h"
+#include "keyboard.h"
+#include "led.h"
+#include "uart0driver.h"
+#include "mmc.h"
+#include "watchdog.h"
+#include "flash.h"
+#include "rtc.h"
+#include "spidrv.h"
 
 #include <stdlib.h>
 #include <string.h>
 #include <io.h>
 #include <fcntl.h>
+#include <time.h>
 
 #include <dev/x12rtc.h>
 #include <dev/nicrtl.h>
 #include <dev/urom.h>
 #include <dev/nplmmc.h>
 #include <dev/sbimmc.h>
+#include <dev/irqreg.h>
+
 #include <fs/phatfs.h>
 
 #include <sys/version.h>
@@ -140,10 +157,79 @@
 #include <net/netdebug.h>
 #endif
 
+char timeDis[40];
+int hour = 0;
+int minute = 0;
+
 /* Service thread counter. */
 static int httpd_tc;
 
 static char *html_mt = "text/html";
+
+/* ??????????????????????????????????????????????????????????????????????? */
+/*!
+* \brief Initialise Digital IO
+* init inputs to '0', outputs to '1' (DDRxn='0' or '1')
+*
+* Pull-ups are enabled when the pin is set to input (DDRxn='0') and then a '1'
+* is written to the pin (PORTxn='1')
+*/
+/* ??????????????????????????????????????????????????????????????????????? */
+void SysInitIO(void)
+{
+    /*
+* Port B: VS1011, MMC CS/WP, SPI
+* output: all, except b3 (SPI Master In)
+* input: SPI Master In
+* pull-up: none
+*/
+    outp(0xF7, DDRB);
+
+    /*
+* Port C: Address bus
+*/
+
+    /*
+* Port D: LCD_data, Keypad Col 2 & Col 3, SDA & SCL (TWI)
+* output: Keyboard colums 2 & 3
+* input: LCD_data, SDA, SCL (TWI)
+* pull-up: LCD_data, SDA & SCL
+*/
+    outp(0x0C, DDRD);
+    outp((inp(PORTD) & 0x0C) | 0xF3, PORTD);
+
+    /*
+* Port E: CS Flash, VS1011 (DREQ), RTL8019, LCD BL/Enable, IR, USB Rx/Tx
+* output: CS Flash, LCD BL/Enable, USB Tx
+* input: VS1011 (DREQ), RTL8019, IR
+* pull-up: USB Rx
+*/
+    outp(0x8E, DDRE);
+    outp((inp(PORTE) & 0x8E) | 0x01, PORTE);
+
+    /*
+* Port F: Keyboard_Rows, JTAG-connector, LED, LCD RS/RW, MCC-detect
+* output: LCD RS/RW, LED
+* input: Keyboard_Rows, MCC-detect
+* pull-up: Keyboard_Rows, MCC-detect
+* note: Key row 0 & 1 are shared with JTAG TCK/TMS. Cannot be used concurrent
+*/
+#ifndef USE_JTAG
+    sbi(JTAG_REG, JTD); // disable JTAG interface to be able to use all key-rows
+    sbi(JTAG_REG, JTD); // do it 2 times - according to requirements ATMEGA128 datasheet: see page 256
+#endif //USE_JTAG
+
+    outp(0x0E, DDRF);
+    outp((inp(PORTF) & 0x0E) | 0xF1, PORTF);
+
+    /*
+* Port G: Keyboard_cols, Bus_control
+* output: Keyboard_cols
+* input: Bus Control (internal control)
+* pull-up: none
+*/
+    outp(0x18, DDRG);
+}
 
 /*
  * Write HTML page header to a specified stream.
@@ -193,15 +279,16 @@ static void WriteHtmlPageHeader(FILE *stream, char *title)
      X12RtcGetStatus,    
      X12RtcClearStatus   
  };
-static void WriteHtmlIntro(FILE *stream, REQUEST * req, char *title)
-{
-    /* These useful API calls create a HTTP response for us. */
-    NutHttpSendHeaderTop(stream, req, 200, "Ok");
-    NutHttpSendHeaderBottom(stream, req, html_mt, -1);
-
-    /* Send HTML header. */
-    WriteHtmlPageHeader(stream, title);
-}
+ 
+// static void WriteHtmlIntro(FILE *stream, REQUEST * req, char *title)
+// {
+//     /* These useful API calls create a HTTP response for us. */
+//     NutHttpSendHeaderTop(stream, req, 200, "Ok");
+//     NutHttpSendHeaderBottom(stream, req, html_mt, -1);
+// 
+//     /* Send HTML header. */
+//     WriteHtmlPageHeader(stream, title);
+// }
 
 #ifdef USE_DATE_AND_TIME
 /*
@@ -227,8 +314,12 @@ static void WriteLocalTime(FILE *stream)
 
 
 #ifdef USE_ASP
-/*
- * ASPCallback
+
+
+
+/* ??????????????????????????????????????????????????????????????????????? */
+/*!
+ * \brief ISR MainBeat Timer Interrupt (Timer 2 for Mega128, Timer 0 for Mega256).
  *
  * This routine must have been registered by NutRegisterAspCallback() 
  * and is automatically called by NutHttpProcessRequest() when the 
@@ -273,7 +364,7 @@ static int ShowQuery(FILE * stream, REQUEST * req)
     static prog_char conn_fmt_P[] = "Connection: %s<BR>\r\n";
 
     /* Send headers and titles. */
-    WriteHtmlIntro(stream, req, "Request Info");
+    /*WriteHtmlIntro*/(stream, req, "Request Info");
 
     /*
      * Send request parameters.
@@ -322,12 +413,16 @@ static int ShowQuery(FILE * stream, REQUEST * req)
     /* Send HTML footer and flush output buffer. */
     fputs_P(foot_P, stream);
     fflush(stream);
-
     return 0;
 }
 
 /*
  * CGI Sample: Show list of threads.
+ */
+/* ??????????????????????????????????????????????????????????????????????? */
+/*!
+ * \brief Initialise Digital IO
+ *  init inputs to '0', outputs to '1' (DDRxn='0' or '1')
  *
  * This routine must have been registered by NutRegisterCgi() and is
  * automatically called by NutHttpProcessRequest() when the client
@@ -347,7 +442,7 @@ static int ShowThreads(FILE * stream, REQUEST * req)
     int i;
 
     /* Send headers and titles. */
-    WriteHtmlIntro(stream, req, "Threads");
+    /*WriteHtmlIntro*/(stream, req, "Threads");
 
     /* Display memory status. */
     fprintf_P(stream, mem_fmt_P, (u_long)NutHeapAvailable());
@@ -408,7 +503,7 @@ static int ShowTimers(FILE * stream, REQUEST * req)
     u_long ticks_left;
 
     /* Send headers and titles. */
-    WriteHtmlIntro(stream, req, "Timers");
+    /*WriteHtmlIntro*/(stream, req, "Timers");
 
     /* Display clock status. */
     fprintf_P(stream, clock_fmt_P, (u_long)NutGetCpuClock(), (u_long)NutGetMillis());
@@ -472,7 +567,7 @@ static int ShowSockets(FILE * stream, REQUEST * req)
     int i;
 
     /* Send headers and titles. */
-    WriteHtmlIntro(stream, req, "Sockets");
+    /*WriteHtmlIntro*/(stream, req, "Sockets");
 
     /* Create a local list first. See ShowThreads() for further informations. */
     for (num = 0, ts = tcpSocketList; num < 100 && ts; num++, ts = ts->so_next);
@@ -555,7 +650,7 @@ int ShowForm(FILE * stream, REQUEST * req)
     static prog_char html_body[] = "</BODY></HTML>";
 
     /* Send headers and titles. */
-    WriteHtmlIntro(stream, req, "Form Result");
+    /*WriteHtmlIntro*/(stream, req, "Form Result");
 
     if (req->req_query) {
         char *name;
@@ -790,19 +885,58 @@ static int InitTimeAndDate(void)
 }
 #endif
 
+/* ??????????????????????????????????????????????????????????????????????? */
 /*!
- * \brief Main application routine.
- *
- * Nut/OS automatically calls this entry after initialization.
+ * \brief schrijft de uren en minuten die uit *tm komen in hour en minutes
+ * \param geeft de _tm *tm mee om daar de tijd en datum gegevens uit op te halen
  */
-int main(void)
+/* ??????????????????????????????????????????????????????????????????????? */
+void displayClock(CONST struct _tm *tm)
 {
-    u_long baud = 115200;
-    int i;
+	hour = tm->tm_hour;
+	minute = tm->tm_min;
+	
+		LogMsg_P(LOG_INFO, PSTR("Yes!,[%d] : [%d]"),hour,minute);
+	
+	int i;
+	for ( i=0; i<40; i++ )
+	{
+		timeDis[i] = ' ';
+	}
+	if (hour>=10)
+	{
+		int h = (int)(hour/10)+0.5;
+		timeDis[5] = h + 0x30;
+		timeDis[6] = hour%10 + 0x30;
+	}
+	else
+	{
+		timeDis[6] = hour + 0x30;
+	}
+	if (minute>=10)
+	{
+		int h = (int)(minute/10)+0.5;
+		timeDis[8] = h + 0x30;
+		timeDis[9] = minute%10 + 0x30;
+	}
+	else
+	{
+		timeDis[8] = 0x30;
+		timeDis[9] = minute + 0x30;
+	}
+	timeDis[7] = ':';
+	
+}
+
+void
+netif_init()
+{
+        u_long baud = 115200;
+        int i;
 
     /*
-     * Initialize the uart device.
-     */
+* Initialize the uart device.
+*/
     NutRegisterDevice(&DEV_DEBUG, 0, 0);
     freopen(DEV_DEBUG_NAME, "w", stdout);
     _ioctl(_fileno(stdout), UART_SETSPEED, &baud);
@@ -817,8 +951,8 @@ int main(void)
 #endif
 
     /*
-     * Register Ethernet controller.
-     */
+* Register Ethernet controller.
+*/
     if (NutRegisterDevice(&DEV_ETHER, ETH0_BASE, ETH0_IRQ)) {
         puts("Registering device failed");
     }
@@ -829,9 +963,9 @@ int main(void)
 
         printf("initial boot...");
 #ifdef USE_DHCP
-		static char eth0IfName[9] = "eth0";
-		uint8_t mac_addr[6] = { 0x00, 0x06, 0x98, 0x30, 0x02, 0x76 };
-        if (NutDhcpIfConfig(eth0IfName, mac_addr, 0)) 
+static char eth0IfName[9] = "eth0";
+uint8_t mac_addr[6] = { 0x00, 0x06, 0x98, 0x30, 0x02, 0x76 };
+        if (NutDhcpIfConfig(eth0IfName, mac_addr, 0))
 #endif
         {
             u_long ip_addr = inet_addr(MY_IPADDR);
@@ -888,14 +1022,14 @@ int main(void)
 #endif
 
     /*
-     * Register our device for the file system.
-     */
-   //REMCO - DELETE PROM NutRegisterDevice(&MY_FSDEV, 0, 0);
+* Register our device for the file system.
+*/
+//REMCO - DELETE PROM NutRegisterDevice(&MY_FSDEV, 0, 0);
 
 #ifdef MY_BLKDEV
     /* Register block device. */
     //printf("Registering block device '" MY_BLKDEV_NAME "'...");
-	printf("Registering block device");
+printf("Registering block device");
     if (NutRegisterDevice(&MY_BLKDEV, 0, 0)) {
         puts("failed");
         for (;;);
@@ -904,7 +1038,7 @@ int main(void)
 
     /* Mount partition. */
     //printf("Mounting block device '" MY_BLKDEV_NAME ":1/" MY_FSDEV_NAME "'...");
-	printf("Mounting block device ");
+printf("Mounting block device ");
     if (_open(MY_BLKDEV_NAME ":1/" MY_FSDEV_NAME, _O_RDWR | _O_BINARY) == -1) {
         puts("failed");
         for (;;);
@@ -923,35 +1057,102 @@ int main(void)
 #endif
 
     /*
-     * Register our CGI sample. This will be called
-     * by http://host/cgi-bin/test.cgi?anyparams
-     */
+* Register our CGI sample. This will be called
+* by http://host/cgi-bin/test.cgi?anyparams
+*/
     NutRegisterCgi("test.cgi", ShowQuery);
 
     /*
-     * Register some CGI samples, which display interesting
-     * system informations.
-     */
+* Register some CGI samples, which display interesting
+* system informations.
+*/
     NutRegisterCgi("threads.cgi", ShowThreads);
     NutRegisterCgi("timers.cgi", ShowTimers);
     NutRegisterCgi("sockets.cgi", ShowSockets);
 
 #ifdef USE_CGI_PARAMETERS
     /*
-     * Finally a CGI example to process a form.
-     */
+* Finally a CGI example to process a form.
+*/
     NutRegisterCgi("form.cgi", ShowForm);
 #endif
 
     /*
-     * Protect the cgi-bin directory with
-     * user and password.
-     */
+* Protect the cgi-bin directory with
+* user and password.
+*/
     NutRegisterAuth("cgi-bin", "root:root");
+    
+        for (i = 0; i < HTTPD_MIN_THREADS; i++) {
+                StartServiceThread();
+        }
+    return;
+}
+
+void
+rtc_init()
+{
+        int t=0;
+
+        /*
+         * Kroeske: time struct uit nut/os time.h (http://www.ethernut.de/api/time_8h-source.html)
+         *
+         */
+        struct _tm gmt;
+
+        /*
+         * Kroeske: Ook kan 'struct _tm gmt' Zie bovenstaande link
+         */
+
+        /*
+         * First disable the watchdog
+         */
+        WatchDogDisable();
+        NutDelay(100);
+        SysInitIO();
+        SPIinit();
+        LedInit();
+        LcdLowLevelInit();
+        Uart0DriverInit();
+        Uart0DriverStart();
+        LogInit();
+        LogMsg_P(LOG_INFO, PSTR("Hello World"));
+        CardInit();
+
+        /*
+        * Kroeske: sources in rtc.c en rtc.h
+        */
+        X12Init(); //initialiseerd de klok
+        X12RtcSetClock(&gmt); //start de klok
+        if (X12RtcGetClock(&gmt) == 0) //debug info
+        {
+                LogMsg_P(LOG_INFO, PSTR("RTC time [%02d:%02d:%02d]"), gmt.tm_hour, gmt.tm_min, gmt.tm_sec );
+        }
+
+
+        if (At45dbInit()==AT45DB041B)
+        {
+        }
+
+
+        RcInit();
+        KbInit();
+//         SysControlMainBeat(ON); // enable 4.4 msecs hartbeat interrupt
+}
+
+/*!
+* \brief Main application routine.
+*
+* Nut/OS automatically calls this entry after initialization.
+*/
+int main(void)
+{
+        netif_init();
+        rtc_init();
 
     /*
-     * Register SSI and ASP handler
-     */
+* Register SSI and ASP handler
+*/
 #ifdef USE_SSI
     NutRegisterSsi();
 #endif
@@ -960,19 +1161,20 @@ int main(void)
     NutRegisterAspCallback(ASPCallback);
 #endif
     /*
-     * Start twelve server threads.
-     */
-    for (i = 0; i < HTTPD_MIN_THREADS; i++) {
-        StartServiceThread();
-    }
+* Start twelve server threads.
+*/
 
     /*
-     * We could do something useful here, like serving a watchdog.
-     */
+* We could do something useful here, like serving a watchdog.
+*/
     NutThreadSetPriority(254);
     for (;;) {
         NutSleep(2000);
-		printf("DIDN'T CRASH \n");
+        printf("DIDN'T CRASH \n");
     }
     return 0;
 }
+
+/* ---------- end of module ------------------------------------------------ */
+
+/*@}*/

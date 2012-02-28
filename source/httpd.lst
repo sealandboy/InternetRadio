@@ -1,4 +1,4 @@
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 1
 
 
    1               		.file	"httpd.c"
@@ -58,7 +58,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
   55               	/* epilogue end (size=1) */
   56               	/* function NutHttpSetOptionFlags size 9 (8) */
   57               		.size	NutHttpSetOptionFlags, .-NutHttpSetOptionFlags
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 2
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 2
 
 
   58               	.global	NutHttpGetOptionFlags
@@ -118,7 +118,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  112 0094 9B89      		ldd r25,Y+19
  113 0096 0097      		sbiw r24,0
  114 0098 01F0      		breq .L30
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 3
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 3
 
 
  115 009a 0E94 0000 		call free
@@ -178,7 +178,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  169 00f4 EE24      		clr r14
  170 00f6 FF24      		clr r15
  171 00f8 20E0      		ldi r18,lo8(mimeTypes)
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 4
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 4
 
 
  172 00fa C22E      		mov r12,r18
@@ -238,7 +238,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  226               	/* epilogue: frame size=0 */
  227 0166 DF91      		pop r29
  228 0168 CF91      		pop r28
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 5
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 5
 
 
  229 016a 1F91      		pop r17
@@ -298,7 +298,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  283 01c6 F040      		sbci r31,hi8(-(mimeTypes))
  284 01c8 8281      		ldd r24,Z+2
  285 01ca 9381      		ldd r25,Z+3
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 6
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 6
 
 
  286 01cc 00C0      		rjmp .L56
@@ -358,7 +358,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  340               	/* prologue end (size=4) */
  341 022a 8C01      		movw r16,r24
  342 022c EB01      		movw r28,r22
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 7
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 7
 
 
  343 022e FC01      		movw r30,r24
@@ -418,7 +418,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  397 0282 8091 0000 		lds r24,http_root
  398 0286 9091 0000 		lds r25,(http_root)+1
  399 028a 0097      		sbiw r24,0
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 8
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 8
 
 
  400 028c 01F0      		breq .L76
@@ -478,7 +478,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  454 02ec DEB7      		in r29,__SP_H__
  455 02ee 2397      		sbiw r28,3
  456 02f0 0FB6      		in __tmp_reg__,__SREG__
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 9
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 9
 
 
  457 02f2 F894      		cli
@@ -488,8 +488,8 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  461               	/* prologue end (size=16) */
  462 02fa DE01      		movw r26,r28
  463 02fc 1196      		adiw r26,1
- 464 02fe E0E0      		ldi r30,lo8(C.5.2218)
- 465 0300 F0E0      		ldi r31,hi8(C.5.2218)
+ 464 02fe E0E0      		ldi r30,lo8(C.5.2219)
+ 465 0300 F0E0      		ldi r31,hi8(C.5.2219)
  466 0302 23E0      		ldi r18,lo8(3)
  467               	.L87:
  468 0304 0190      		ld r0,Z+
@@ -538,7 +538,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  511 0356 F801      		movw r30,r16
  512 0358 8083      		st Z,r24
  513               	.L99:
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 10
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 10
 
 
  514 035a 8601      		movw r16,r12
@@ -598,7 +598,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  568 03b0 00C0      		rjmp .L103
  569               	.L104:
  570 03b2 8632      		cpi r24,lo8(38)
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 11
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 11
 
 
  571 03b4 01F4      		brne .L105
@@ -658,7 +658,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  625               	.L110:
  626 0418 8C91      		ld r24,X
  627 041a 8823      		tst r24
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 12
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 12
 
 
  628 041c 01F4      		brne .L111
@@ -718,7 +718,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  682 0480 8E89      		ldd r24,Y+22
  683 0482 9F89      		ldd r25,Y+23
  684 0484 E816      		cp r14,r24
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 13
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 13
 
 
  685 0486 F906      		cpc r15,r25
@@ -757,8 +757,8 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  718 04b4 01F0      		breq .L125
  719 04b6 5F93      		push r21
  720 04b8 4F93      		push r20
- 721 04ba 80E0      		ldi r24,lo8(typ_fmt_P.2144)
- 722 04bc 90E0      		ldi r25,hi8(typ_fmt_P.2144)
+ 721 04ba 80E0      		ldi r24,lo8(typ_fmt_P.2145)
+ 722 04bc 90E0      		ldi r25,hi8(typ_fmt_P.2145)
  723 04be 9F93      		push r25
  724 04c0 8F93      		push r24
  725 04c2 DF93      		push r29
@@ -778,12 +778,12 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  739 04de 1F93      		push r17
  740 04e0 0F93      		push r16
  741 04e2 FF92      		push r15
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 14
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 14
 
 
  742 04e4 EF92      		push r14
- 743 04e6 80E0      		ldi r24,lo8(len_fmt_P.2145)
- 744 04e8 90E0      		ldi r25,hi8(len_fmt_P.2145)
+ 743 04e6 80E0      		ldi r24,lo8(len_fmt_P.2146)
+ 744 04e8 90E0      		ldi r25,hi8(len_fmt_P.2146)
  745 04ea 9F93      		push r25
  746 04ec 8F93      		push r24
  747 04ee DF93      		push r29
@@ -799,8 +799,8 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  757 0504 EDBF      		out __SP_L__,r30
  758               	.L127:
  759 0506 BE01      		movw r22,r28
- 760 0508 80E0      		ldi r24,lo8(con_str_P.2146)
- 761 050a 90E0      		ldi r25,hi8(con_str_P.2146)
+ 760 0508 80E0      		ldi r24,lo8(con_str_P.2147)
+ 761 050a 90E0      		ldi r25,hi8(con_str_P.2147)
  762 050c 0E94 0000 		call fputs_P
  763 0510 F601      		movw r30,r12
  764 0512 80A1      		ldd r24,Z+32
@@ -808,13 +808,13 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  766 0516 0297      		sbiw r24,2
  767 0518 01F4      		brne .L129
  768 051a BE01      		movw r22,r28
- 769 051c 80E0      		ldi r24,lo8(cka_str_P.2148)
- 770 051e 90E0      		ldi r25,hi8(cka_str_P.2148)
+ 769 051c 80E0      		ldi r24,lo8(cka_str_P.2149)
+ 770 051e 90E0      		ldi r25,hi8(cka_str_P.2149)
  771 0520 00C0      		rjmp .L133
  772               	.L129:
  773 0522 BE01      		movw r22,r28
- 774 0524 80E0      		ldi r24,lo8(ccl_str_P.2147)
- 775 0526 90E0      		ldi r25,hi8(ccl_str_P.2147)
+ 774 0524 80E0      		ldi r24,lo8(ccl_str_P.2148)
+ 775 0526 90E0      		ldi r25,hi8(ccl_str_P.2148)
  776               	.L133:
  777 0528 0E94 0000 		call fputs_P
  778               	/* epilogue: frame size=0 */
@@ -838,7 +838,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  796               		.type	NutHttpSendHeaderBot, @function
  797               	NutHttpSendHeaderBot:
  798               	/* prologue: frame size=0 */
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 15
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 15
 
 
  799 053e EF92      		push r14
@@ -856,8 +856,8 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  811 0554 01F0      		breq .L135
  812 0556 7F93      		push r23
  813 0558 6F93      		push r22
- 814 055a 80E0      		ldi r24,lo8(typ_fmt_P.2136)
- 815 055c 90E0      		ldi r25,hi8(typ_fmt_P.2136)
+ 814 055a 80E0      		ldi r24,lo8(typ_fmt_P.2137)
+ 815 055c 90E0      		ldi r25,hi8(typ_fmt_P.2137)
  816 055e 9F93      		push r25
  817 0560 8F93      		push r24
  818 0562 DF93      		push r29
@@ -878,8 +878,8 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  833 0580 0F93      		push r16
  834 0582 FF92      		push r15
  835 0584 EF92      		push r14
- 836 0586 80E0      		ldi r24,lo8(len_fmt_P.2137)
- 837 0588 90E0      		ldi r25,hi8(len_fmt_P.2137)
+ 836 0586 80E0      		ldi r24,lo8(len_fmt_P.2138)
+ 837 0588 90E0      		ldi r25,hi8(len_fmt_P.2138)
  838 058a 9F93      		push r25
  839 058c 8F93      		push r24
  840 058e DF93      		push r29
@@ -898,7 +898,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  853 05a8 80E0      		ldi r24,lo8(.LC0)
  854 05aa 90E0      		ldi r25,hi8(.LC0)
  855 05ac 0E94 0000 		call fputs
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 16
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 16
 
 
  856               	/* epilogue: frame size=0 */
@@ -956,9 +956,9 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  905 05fa 8F93      		push r24
  906 05fc 9F93      		push r25
  907 05fe 8F93      		push r24
- 908 0600 80E0      		ldi r24,lo8(fmt_P.2122)
- 909 0602 90E0      		ldi r25,hi8(fmt_P.2122)
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 17
+ 908 0600 80E0      		ldi r24,lo8(fmt_P.2123)
+ 909 0602 90E0      		ldi r25,hi8(fmt_P.2123)
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 17
 
 
  910 0604 9F93      		push r25
@@ -1018,7 +1018,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  964 067e 0FBE      		out __SREG__,__tmp_reg__
  965 0680 CDBF      		out __SP_L__,r28
  966 0682 DF91      		pop r29
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 18
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 18
 
 
  967 0684 CF91      		pop r28
@@ -1078,7 +1078,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1002 0694 8F92      		push r8
  1003 0696 9F92      		push r9
  1004 0698 AF92      		push r10
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 19
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 19
 
 
  1005 069a BF92      		push r11
@@ -1138,7 +1138,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1059 06fe D02E      		mov r13,r16
  1060 0700 00C0      		rjmp .L153
  1061               	.L163:
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 20
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 20
 
 
  1062 0702 10E0      		ldi r17,lo8(.LC4)
@@ -1193,12 +1193,12 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1111 075c C801      		movw r24,r16
  1112 075e 0E94 0000 		call strrchr
  1113 0762 EC01      		movw r28,r24
- 1114 0764 20E0      		ldi r18,lo8(auth_fmt_P.2156)
- 1115 0766 30E0      		ldi r19,hi8(auth_fmt_P.2156)
+ 1114 0764 20E0      		ldi r18,lo8(auth_fmt_P.2157)
+ 1115 0766 30E0      		ldi r19,hi8(auth_fmt_P.2157)
  1116 0768 892B      		or r24,r25
  1117 076a 01F0      		breq .L159
  1118 076c 1882      		st Y,__zero_reg__
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 21
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 21
 
 
  1119 076e 1F93      		push r17
@@ -1258,7 +1258,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1173 07d6 B401      		movw r22,r8
  1174 07d8 C501      		movw r24,r10
  1175 07da 0E94 0000 		call NutHttpSendHeaderBottom
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 22
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 22
 
 
  1176 07de DF92      		push r13
@@ -1269,8 +1269,8 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1181 07e8 CF92      		push r12
  1182 07ea FF92      		push r15
  1183 07ec EF92      		push r14
- 1184 07ee 80E0      		ldi r24,lo8(err_fmt_P.2155)
- 1185 07f0 90E0      		ldi r25,hi8(err_fmt_P.2155)
+ 1184 07ee 80E0      		ldi r24,lo8(err_fmt_P.2156)
+ 1185 07f0 90E0      		ldi r25,hi8(err_fmt_P.2156)
  1186 07f2 9F93      		push r25
  1187 07f4 8F93      		push r24
  1188 07f6 BF92      		push r11
@@ -1318,7 +1318,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1222      5479 7065 
  1222      3A00 
  1223               	.LC14:
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 23
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 23
 
 
  1224 00a0 436F 6F6B 		.string	"Cookie:"
@@ -1371,14 +1371,14 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1250 0113 5552 4F4D 		.string	"UROM:"
  1250      3A00 
  1251               	.LC28:
- 1252 0119 4672 6920 		.string	"Fri Feb 13 2012 13:59:50"
+ 1252 0119 4672 6920 		.string	"Fri Feb 28 2012 11:11:27"
  1252      4665 6220 
- 1252      3133 2032 
+ 1252      3238 2032 
  1252      3031 3220 
- 1252      3133 3A35 
+ 1252      3131 3A31 
  1253               	.LC29:
  1254 0132 4F6B 00   		.string	"Ok"
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 24
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 24
 
 
  1255               	.LC30:
@@ -1438,7 +1438,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1305 087e 4C01      		movw r8,r24
  1306 0880 998F      		std Y+25,r25
  1307 0882 888F      		std Y+24,r24
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 25
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 25
 
 
  1308 0884 892B      		or r24,r25
@@ -1498,7 +1498,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1362 08f4 892B      		or r24,r25
  1363 08f6 01F0      		breq .L177
  1364 08f8 1082      		st Z,__zero_reg__
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 26
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 26
 
 
  1365               	.L177:
@@ -1558,7 +1558,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1419 0966 C801      		movw r24,r16
  1420 0968 0E94 0000 		call strncasecmp
  1421 096c 892B      		or r24,r25
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 27
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 27
 
 
  1422 096e 01F4      		brne .L189
@@ -1618,7 +1618,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1476 09dc 00C0      		rjmp .L283
  1477               	.L195:
  1478 09de 4BE0      		ldi r20,lo8(11)
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 28
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 28
 
 
  1479 09e0 50E0      		ldi r21,hi8(11)
@@ -1678,7 +1678,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1533 0a50 01F4      		brne .L203
  1534 0a52 B801      		movw r22,r16
  1535 0a54 6B5F      		subi r22,lo8(-(5))
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 29
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 29
 
 
  1536 0a56 7F4F      		sbci r23,hi8(-(5))
@@ -1738,7 +1738,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1590 0ac0 0E94 0000 		call free
  1591 0ac4 C601      		movw r24,r12
  1592 0ac6 0E94 0000 		call NextWord
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 30
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 30
 
 
  1593 0aca 7C01      		movw r14,r24
@@ -1798,7 +1798,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1647 0b34 C101      		movw r24,r2
  1648 0b36 0E94 0000 		call NutHttpSendError
  1649 0b3a 00C0      		rjmp .L175
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 31
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 31
 
 
  1650               	.L218:
@@ -1858,7 +1858,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1704 0ba0 8F01      		movw r16,r30
  1705 0ba2 0190      		ld __tmp_reg__,Z+
  1706 0ba4 0020      		tst __tmp_reg__
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 32
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 32
 
 
  1707 0ba6 01F4      		brne .-6
@@ -1918,7 +1918,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1761 0c1a 48E0      		ldi r20,lo8(8)
  1762 0c1c 50E0      		ldi r21,hi8(8)
  1763 0c1e 60E0      		ldi r22,lo8(.LC26)
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 33
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 33
 
 
  1764 0c20 70E0      		ldi r23,hi8(.LC26)
@@ -1978,7 +1978,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1818 0c8e E00F      		add r30,r16
  1819 0c90 F11F      		adc r31,r17
  1820 0c92 3196      		adiw r30,1
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 34
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 34
 
 
  1821 0c94 CD01      		movw r24,r26
@@ -2038,7 +2038,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1875 0cfe EA89      		ldd r30,Y+18
  1876 0d00 FB89      		ldd r31,Y+19
  1877 0d02 A080      		ld r10,Z
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 35
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 35
 
 
  1878 0d04 B180      		ldd r11,Z+1
@@ -2098,7 +2098,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1932 0d76 2817      		cp r18,r24
  1933 0d78 3907      		cpc r19,r25
  1934 0d7a 4A07      		cpc r20,r26
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 36
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 36
 
 
  1935 0d7c 5B07      		cpc r21,r27
@@ -2158,7 +2158,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  1989 0dfe 6B01      		movw r12,r22
  1990 0e00 7C01      		movw r14,r24
  1991 0e02 8DB7      		in r24,__SP_L__
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 37
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 37
 
 
  1992 0e04 9EB7      		in r25,__SP_H__
@@ -2218,7 +2218,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  2046 0e7e F401      		movw r30,r8
  2047 0e80 8081      		ld r24,Z
  2048 0e82 9181      		ldd r25,Z+1
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 38
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 38
 
 
  2049 0e84 0397      		sbiw r24,3
@@ -2278,7 +2278,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  2103 0eee 0E94 0000 		call free
  2104               	.L264:
  2105 0ef2 C201      		movw r24,r4
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 39
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 39
 
 
  2106 0ef4 0E94 0000 		call _close
@@ -2338,7 +2338,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  2160 0f64 B401      		movw r22,r8
  2161 0f66 C101      		movw r24,r2
  2162 0f68 0E94 0000 		call NutHttpSendHeaderTop
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 40
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 40
 
 
  2163 0f6c C201      		movw r24,r4
@@ -2398,7 +2398,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  2211 016f 2E68 746D 		.string	".htm"
  2211      00
  2212               	.LC37:
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 41
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 41
 
 
  2213 0174 2E67 6966 		.string	".gif"
@@ -2458,7 +2458,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  2241      00
  2242               	.LC52:
  2243 0207 7465 7874 		.string	"text/xml"
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 42
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 42
 
 
  2243      2F78 6D6C 
@@ -2518,7 +2518,7 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  2294 0271 2F69 6E64 		.string	"/index.htm"
  2294      6578 2E68 
  2294      746D 00
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 43
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 43
 
 
  2295               	.LC56:
@@ -2563,89 +2563,89 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  2317 02d7 0000      		.word	.LC60
  2318 02d9 0000      		.word	.LC61
  2319 02db 0000      		.word	0
- 2320               		.type	C.5.2218, @object
- 2321               		.size	C.5.2218, 3
- 2322               	C.5.2218:
+ 2320               		.type	C.5.2219, @object
+ 2321               		.size	C.5.2219, 3
+ 2322               	C.5.2219:
  2323 02dd 0000 00   		.skip 3,0
  2324               		.section	.progmem.data,"a",@progbits
- 2325               		.type	auth_fmt_P.2156, @object
- 2326               		.size	auth_fmt_P.2156, 37
- 2327               	auth_fmt_P.2156:
+ 2325               		.type	auth_fmt_P.2157, @object
+ 2326               		.size	auth_fmt_P.2157, 37
+ 2327               	auth_fmt_P.2157:
  2328 0000 5757 572D 		.string	"WWW-Authenticate: Basic realm=\"%s\"\r\n"
  2328      4175 7468 
  2328      656E 7469 
  2328      6361 7465 
  2328      3A20 4261 
- 2329               		.type	err_fmt_P.2155, @object
- 2330               		.size	err_fmt_P.2155, 67
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 44
+ 2329               		.type	err_fmt_P.2156, @object
+ 2330               		.size	err_fmt_P.2156, 67
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 44
 
 
- 2331               	err_fmt_P.2155:
+ 2331               	err_fmt_P.2156:
  2332 0025 3C48      		.ascii	"<H"
  2333 0027 544D 4C3E 		.string	"TML><HEAD><TITLE>%d %s</TITLE></HEAD><BODY>%d %s</BODY></HTML>\r\n"
  2333      3C48 4541 
  2333      443E 3C54 
  2333      4954 4C45 
  2333      3E25 6420 
- 2334               		.type	cka_str_P.2148, @object
- 2335               		.size	cka_str_P.2148, 15
- 2336               	cka_str_P.2148:
+ 2334               		.type	cka_str_P.2149, @object
+ 2335               		.size	cka_str_P.2149, 15
+ 2336               	cka_str_P.2149:
  2337 0068 4B65 6570 		.string	"Keep-Alive\r\n\r\n"
  2337      2D41 6C69 
  2337      7665 0D0A 
  2337      0D0A 00
- 2338               		.type	ccl_str_P.2147, @object
- 2339               		.size	ccl_str_P.2147, 10
- 2340               	ccl_str_P.2147:
+ 2338               		.type	ccl_str_P.2148, @object
+ 2339               		.size	ccl_str_P.2148, 10
+ 2340               	ccl_str_P.2148:
  2341 0077 636C 6F73 		.string	"close\r\n\r\n"
  2341      650D 0A0D 
  2341      0A00 
- 2342               		.type	con_str_P.2146, @object
- 2343               		.size	con_str_P.2146, 13
- 2344               	con_str_P.2146:
+ 2342               		.type	con_str_P.2147, @object
+ 2343               		.size	con_str_P.2147, 13
+ 2344               	con_str_P.2147:
  2345 0081 436F 6E6E 		.string	"Connection: "
  2345      6563 7469 
  2345      6F6E 3A20 
  2345      00
- 2346               		.type	len_fmt_P.2145, @object
- 2347               		.size	len_fmt_P.2145, 22
- 2348               	len_fmt_P.2145:
+ 2346               		.type	len_fmt_P.2146, @object
+ 2347               		.size	len_fmt_P.2146, 22
+ 2348               	len_fmt_P.2146:
  2349 008e 436F 6E74 		.string	"Content-Length: %ld\r\n"
  2349      656E 742D 
  2349      4C65 6E67 
  2349      7468 3A20 
  2349      256C 640D 
- 2350               		.type	typ_fmt_P.2144, @object
- 2351               		.size	typ_fmt_P.2144, 19
- 2352               	typ_fmt_P.2144:
+ 2350               		.type	typ_fmt_P.2145, @object
+ 2351               		.size	typ_fmt_P.2145, 19
+ 2352               	typ_fmt_P.2145:
  2353 00a4 436F 6E74 		.string	"Content-Type: %s\r\n"
  2353      656E 742D 
  2353      5479 7065 
  2353      3A20 2573 
  2353      0D0A 00
- 2354               		.type	len_fmt_P.2137, @object
- 2355               		.size	len_fmt_P.2137, 22
- 2356               	len_fmt_P.2137:
+ 2354               		.type	len_fmt_P.2138, @object
+ 2355               		.size	len_fmt_P.2138, 22
+ 2356               	len_fmt_P.2138:
  2357 00b7 436F 6E74 		.string	"Content-Length: %ld\r\n"
  2357      656E 742D 
  2357      4C65 6E67 
  2357      7468 3A20 
  2357      256C 640D 
- 2358               		.type	typ_fmt_P.2136, @object
- 2359               		.size	typ_fmt_P.2136, 19
- 2360               	typ_fmt_P.2136:
+ 2358               		.type	typ_fmt_P.2137, @object
+ 2359               		.size	typ_fmt_P.2137, 19
+ 2360               	typ_fmt_P.2137:
  2361 00cd 436F 6E74 		.string	"Content-Type: %s\r\n"
  2361      656E 742D 
  2361      5479 7065 
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 45
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 45
 
 
  2361      3A20 2573 
  2361      0D0A 00
- 2362               		.type	fmt_P.2122, @object
- 2363               		.size	fmt_P.2122, 40
- 2364               	fmt_P.2122:
+ 2362               		.type	fmt_P.2123, @object
+ 2363               		.size	fmt_P.2123, 40
+ 2364               	fmt_P.2123:
  2365 00e0 4854 5450 		.string	"HTTP/%d.%d %d %s\r\nServer: Ethernut %s\r\n"
  2365      2F25 642E 
  2365      2564 2025 
@@ -2654,46 +2654,46 @@ GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 1
  2366               		.lcomm http_optflags,4
  2367               		.comm http_root,2,1
  2368               	/* File "source/httpd.c": code 2014 = 0x07de (1777), prologues 114, epilogues 123 */
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 46
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 46
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 httpd.c
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:3      *ABS*:0000003f __SREG__
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:4      *ABS*:0000003e __SP_H__
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:5      *ABS*:0000003d __SP_L__
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:12     .text:00000000 NextWord
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:46     .text:00000028 NutHttpSetOptionFlags
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:3      *ABS*:0000003f __SREG__
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:4      *ABS*:0000003e __SP_H__
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:5      *ABS*:0000003d __SP_L__
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:6      *ABS*:00000000 __tmp_reg__
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:7      *ABS*:00000001 __zero_reg__
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:12     .text:00000000 NextWord
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:46     .text:00000028 NutHttpSetOptionFlags
                              .bss:00000000 http_optflags
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:60     .text:0000003a NutHttpGetOptionFlags
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:73     .text:0000004c DestroyRequestInfo
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:147    .text:000000ce NutGetMimeHandler
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2246   .data:00000210 mimeTypes
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:241    .text:00000178 NutGetMimeType
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:334    .text:00000222 HeaderFieldValue
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:391    .text:0000027c NutRegisterHttpRoot
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:60     .text:0000003a NutHttpGetOptionFlags
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:73     .text:0000004c DestroyRequestInfo
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:147    .text:000000ce NutGetMimeHandler
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2246   .data:00000210 mimeTypes
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:241    .text:00000178 NutGetMimeType
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:334    .text:00000222 HeaderFieldValue
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:391    .text:0000027c NutRegisterHttpRoot
                             *COM*:00000002 http_root
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:443    .text:000002da NutHttpURLDecode
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2322   .data:000002dd C.5.2218
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:547    .text:0000038c NutHttpProcessQueryString
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:701    .text:00000498 NutHttpSendHeaderBottom
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2352   .progmem.data:000000a4 typ_fmt_P.2144
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2348   .progmem.data:0000008e len_fmt_P.2145
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2344   .progmem.data:00000081 con_str_P.2146
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2336   .progmem.data:00000068 cka_str_P.2148
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2340   .progmem.data:00000077 ccl_str_P.2147
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:797    .text:0000053e NutHttpSendHeaderBot
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2360   .progmem.data:000000cd typ_fmt_P.2136
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2356   .progmem.data:000000b7 len_fmt_P.2137
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:873    .text:000005be NutHttpSendHeaderTop
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2364   .progmem.data:000000e0 fmt_P.2122
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:1000   .text:00000694 NutHttpSendError
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2327   .progmem.data:00000000 auth_fmt_P.2156
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2331   .progmem.data:00000025 err_fmt_P.2155
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:1260   .text:00000828 NutHttpProcessRequest
-C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s:2309   .data:000002c9 default_files
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:443    .text:000002da NutHttpURLDecode
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2322   .data:000002dd C.5.2219
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:547    .text:0000038c NutHttpProcessQueryString
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:701    .text:00000498 NutHttpSendHeaderBottom
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2352   .progmem.data:000000a4 typ_fmt_P.2145
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2348   .progmem.data:0000008e len_fmt_P.2146
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2344   .progmem.data:00000081 con_str_P.2147
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2336   .progmem.data:00000068 cka_str_P.2149
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2340   .progmem.data:00000077 ccl_str_P.2148
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:797    .text:0000053e NutHttpSendHeaderBot
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2360   .progmem.data:000000cd typ_fmt_P.2137
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2356   .progmem.data:000000b7 len_fmt_P.2138
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:873    .text:000005be NutHttpSendHeaderTop
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2364   .progmem.data:000000e0 fmt_P.2123
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:1000   .text:00000694 NutHttpSendError
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2327   .progmem.data:00000000 auth_fmt_P.2157
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2331   .progmem.data:00000025 err_fmt_P.2156
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:1260   .text:00000828 NutHttpProcessRequest
+C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s:2309   .data:000002c9 default_files
 
 UNDEFINED SYMBOLS
 __do_copy_data
@@ -2714,7 +2714,7 @@ fprintf
 strrchr
 fgets
 strchr
-GAS LISTING C:\Users\Remco\AppData\Local\Temp/ccWN3prq.s 			page 47
+GAS LISTING C:/Users/MICHEL~1/AppData/Local/Temp/ccHb8lbW.s 			page 47
 
 
 strncasecmp

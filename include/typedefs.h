@@ -171,6 +171,7 @@ typedef enum _TERRORCODE
     PLAYER_NO_SOURCE,                   /* No source to play audio from */
 } TError;
 
+typedef void (*thead_start_t)(void*);
 
 /*--------------------------------------------------------------------------*/
 /*  Global variables                                                        */

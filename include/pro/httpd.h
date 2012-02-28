@@ -186,6 +186,7 @@ extern char *NutHttpGetParameter(REQUEST * req, char *name);
 extern int NutHttpGetParameterCount(REQUEST * req);
 extern char *NutHttpGetParameterName(REQUEST * req, int index);
 extern char *NutHttpGetParameterValue(REQUEST * req, int index);
+extern void netif_init();
 
 
 __END_DECLS
