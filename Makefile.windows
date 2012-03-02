@@ -41,8 +41,8 @@ CFILES =        main.c			\
 				httpd.c			\
 				httpopt.c		\
 				rfctime.c		\
-				rtc.c
-			
+				rtc.c                   \
+                                PlayStream.c
 				
 # Header files.
 HFILES =        display.h		\
@@ -75,8 +75,8 @@ HFILES =        display.h		\
 				httpd.h			\
 				rcftime.h		\
 				arch.h			\
-				rtc.h
-
+				rtc.h                   \
+                                PlayStream.h
 # Alle source files in de ./source dir
 SRCS =	$(addprefix $(SRC_DIR)/,$(CFILES))
 OBJS = 	$(SRCS:.c=.o)
